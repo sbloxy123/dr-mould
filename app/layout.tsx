@@ -25,6 +25,10 @@ const patua = Patua_One({
 export const metadata: Metadata = {
   title: "Dr Mould",
   description: "Your Trusted Mould Treatment Solution",
+  metadataBase: new URL("https://www.dr-mould.co.uk"),
+  openGraph: {
+    images: "/opengraph-image.png",
+  },
 };
 
 export default function RootLayout({
