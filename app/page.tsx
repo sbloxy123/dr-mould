@@ -16,10 +16,10 @@ export default function Home() {
               key={topic.title}
               className="content-container grid grid-cols-12 mb-10"
             >
-              <div className="col-span-2 col-start-2 text-xl font-semibold font-patua text-theme_dark_green-900">
+              <div className="col-span-12 md:col-span-2 md:col-start-2 text-xl font-semibold font-patua text-theme_dark_green-900 pb-10">
                 {topic.title}
               </div>
-              <div className="col-span-7 col-start-5 col-end-11">
+              <div className="md:col-span-7 md:col-start-5 col-span-12  md:col-end-11">
                 {topic.content.map((p) => {
                   return (
                     <p key={p} className="pb-8">

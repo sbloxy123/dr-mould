@@ -17,7 +17,7 @@ const InfoCard = ({
   image: string;
 }) => {
   return (
-    <Card className="w-[48%] max-w-[48rem] flex-row h-56 rounded-r-sm">
+    <Card className="lg:w-[90%] max-w-[48rem] flex-row md:h-60 rounded-r-sm ">
       <CardHeader
         shadow={false}
         floated={false}
@@ -31,10 +31,13 @@ const InfoCard = ({
         />
       </CardHeader>
       <CardBody>
-        <Typography variant="h4" color="blue-gray" className="mb-2">
+        <Typography variant="h4" color="blue-gray" className="mb-2 text-xl">
           {title}
         </Typography>
-        <Typography color="gray" className="mb-8 font-normal">
+        <Typography
+          color="gray"
+          className="mb-8 font-normal text-sm md:text-base"
+        >
           {text}
         </Typography>
       </CardBody>
