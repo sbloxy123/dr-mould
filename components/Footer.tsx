@@ -50,7 +50,7 @@ const Footer = () => {
           <Link href="/contact">GET A QUOTE!</Link>
         </div>
       </div>
-      <p className="text-sm py-12 m-auto w-fit text-center md:text-left">
+      <p className="text-sm py-12 m-auto w-fit text-center md:text-left p-4">
         © 2022 Dr Mould, All rights reserved | Design & Build by{" "}
         <a
           className="text-blue-500 font-semibold hover:text-theme_dark_green-900"
