@@ -18,7 +18,10 @@ const Contact = () => {
             <ul className="pt-10 pb-10 text-xl">
               <li className="pb-2">
                 Tel:{" "}
-                <a className="text-theme_dark_green-900" href="tel:07806615231">
+                <a
+                  className="text-theme_dark_green-900 hover:text-theme_gold-900 ease-in-out duration-300"
+                  href="tel:07806615231"
+                >
                   07806 615231
                 </a>
               </li>
