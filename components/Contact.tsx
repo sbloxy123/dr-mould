@@ -22,7 +22,7 @@ const Contact = () => {
                   07806 615231
                 </a>
               </li>
-              <li className="">
+              {/* <li className="">
                 Email:{" "}
                 <a
                   className="text-theme_dark_green-900"
@@ -30,7 +30,7 @@ const Contact = () => {
                 >
                   sbloxy123@gmail.com
                 </a>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="md:px-10 w-full md:w-1/2">
