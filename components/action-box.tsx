@@ -1,6 +1,8 @@
+"use client";
 import Image from "next/image";
 import SecondaryBtn from "./SecondaryBtn";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const ActionBox = ({
   title,
@@ -31,7 +33,13 @@ const ActionBox = ({
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 w-[100vw] h-auto">
-      <div
+      <motion.div
+        initial={{ y: 100 }}
+        whileInView={{ y: 0 }}
+        transition={{
+          bounce: 0,
+        }}
+        viewport={{ once: true }}
         className={`${
           idx % 2 !== 0 && "order-2"
         } relative h-auto hidden md:block`}
@@ -45,7 +53,7 @@ const ActionBox = ({
           // height={700}
           fill
         />
-      </div>
+      </motion.div>
       {/* ========== new start ============== */}
       <div className="relative md:hidden z-10 h-fit bg-theme_dark_green-900">
         <div className="relative h-auto">
@@ -64,7 +72,15 @@ const ActionBox = ({
               idx % 2 !== 0 && "order-1"
             } text-theme_white-900 h-[60vh] flex `}
           >
-            <div className="h-fit m-auto p-2 md:p-8">
+            <motion.div
+              initial={{ y: 100 }}
+              whileInView={{ y: 0 }}
+              transition={{
+                bounce: 0,
+              }}
+              viewport={{ once: true }}
+              className="h-fit m-auto p-2 md:p-8"
+            >
               <h3 className="text-center capitalize text-3xl pb-10 font-patua">
                 {title}
               </h3>
@@ -81,7 +97,7 @@ const ActionBox = ({
                   <SecondaryBtn label="Learn More...." btnColor={btnColor} />
                 </Link>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -91,7 +107,15 @@ const ActionBox = ({
           idx % 2 !== 0 && "order-1"
         } text-theme_white-900 h-[60vh] md:flex hidden`}
       >
-        <div className="h-fit m-auto p-2 md:p-8">
+        <motion.div
+          initial={{ y: 100 }}
+          whileInView={{ y: 0 }}
+          transition={{
+            bounce: 0,
+          }}
+          viewport={{ once: true }}
+          className="h-fit m-auto p-2 md:p-8"
+        >
           <h3 className="text-center capitalize text-3xl pb-10 font-patua">
             {title}
           </h3>
@@ -108,7 +132,7 @@ const ActionBox = ({
               <SecondaryBtn label="Learn More...." btnColor={btnColor} />
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

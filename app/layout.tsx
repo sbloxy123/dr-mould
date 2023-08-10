@@ -1,5 +1,7 @@
 import "./globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import { LocalBusiness, WithContext } from "schema-dts";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 import Navbar from "../components/Navbar";
 import type { Metadata } from "next";
@@ -23,11 +25,58 @@ const patua = Patua_One({
   variable: "--font-patua",
 });
 export const metadata: Metadata = {
-  title: "Dr Mould",
-  description: "Your Trusted Mould Treatment Solution",
+  title: "Dr Mould | Effective Mould Solutions for Healthier Homes",
+  description:
+    "Discover our proven mould removal and prevention treatments that create mould-free living spaces, promoting a healthier and comfortable home environment",
   metadataBase: new URL("https://www.dr-mould.co.uk"),
   openGraph: {
     images: "/opengraph-image.png",
+  },
+};
+const jsonLd: WithContext<LocalBusiness> = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "@id": "https://dr-mould.co.uk/",
+  name: "Dr Mould - Local Mould Treatment and Cleaning Service",
+  url: "https://dr-mould.co.uk/",
+  logo: "https://www.dr-mould.co.uk/favicon.ico",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Hare Street",
+    addressLocality: "Buntingford",
+    addressRegion: "Hertfordshire",
+    addressCountry: "United Kingdom",
+    postalCode: "SG9 0EA",
+  },
+  telephone: "07806615231",
+  email: "stuartjbloxham@gmail.com",
+  image: ["https://www.dr-mould.co.uk/opengraph-image.png?ad00cb6df7787160"],
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: [
+      {
+        "@type": "DayOfWeek",
+        name: "Monday",
+      },
+      {
+        "@type": "DayOfWeek",
+        name: "Tuesday",
+      },
+      {
+        "@type": "DayOfWeek",
+        name: "Wednesday",
+      },
+      {
+        "@type": "DayOfWeek",
+        name: "Thursday",
+      },
+      {
+        "@type": "DayOfWeek",
+        name: "Friday",
+      },
+    ],
+    opens: "08:00",
+    closes: "17:30",
   },
 };
 
@@ -38,9 +87,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" style={{ scrollBehavior: "smooth" }}>
+      <GoogleAnalytics GA_MEASUREMENT_ID="G-KSTFZWW3Y6" />
+
       <body
         className={`${mulish.variable}  ${poppins.variable} ${patua.variable}`}
       >
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Navbar />
         {children}
         <Footer />

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { motion } from "framer-motion";
 import {
   Accordion,
   AccordionHeader,
@@ -18,27 +19,38 @@ const FAQ = () => {
         <h2 className="text-2xl font-patua py-16">FAQ</h2>
         {faq.map((topic) => {
           return (
-            <Accordion
+            <motion.div
               key={topic.id}
-              open={open === topic.id}
-              className="mb-2 rounded-lg border border-blue-gray-100 px-4"
+              initial={{ y: 100 }}
+              whileInView={{ y: 0 }}
+              transition={{
+                bounce: 0,
+              }}
+              viewport={{ once: true }}
             >
-              <AccordionHeader
-                onClick={() => handleOpen(topic.id)}
-                className={`border-b-0 transition-colors ${
-                  open === topic.id ? "text-blue-500 hover:!text-blue-700" : ""
-                }`}
+              <Accordion
+                open={open === topic.id}
+                className="mb-2 rounded-lg border border-blue-gray-100 px-4"
               >
-                {topic.question}
-              </AccordionHeader>
-              <AccordionBody className="pt-0 text-base font-normal">
-                {topic.answer.map((para) => (
-                  <p key={para} className="py-2">
-                    {para}
-                  </p>
-                ))}
-              </AccordionBody>
-            </Accordion>
+                <AccordionHeader
+                  onClick={() => handleOpen(topic.id)}
+                  className={`border-b-0 transition-colors ${
+                    open === topic.id
+                      ? "text-blue-500 hover:!text-blue-700"
+                      : ""
+                  }`}
+                >
+                  {topic.question}
+                </AccordionHeader>
+                <AccordionBody className="pt-0 text-base font-normal">
+                  {topic.answer.map((para) => (
+                    <p key={para} className="py-2">
+                      {para}
+                    </p>
+                  ))}
+                </AccordionBody>
+              </Accordion>
+            </motion.div>
           );
         })}
       </div>
