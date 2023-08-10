@@ -27,7 +27,7 @@ const patua = Patua_One({
 export const metadata: Metadata = {
   title: "Dr Mould | Effective Mould Solutions for Healthier Homes",
   description:
-    "Discover our proven mould removal and prevention treatments that create mould-free living spaces, promoting a healthier and comfortable home environment",
+    "Proven mould removal and prevention treatments that create mould-free living spaces, promoting a healthier and comfortable home environment",
   metadataBase: new URL("https://www.dr-mould.co.uk"),
   openGraph: {
     images: "/opengraph-image.png",
