@@ -179,7 +179,9 @@ export const faq = [
     answer: [
       "Preventing mould formation in a home involves taking proactive measures to control moisture and create an environment that is less conducive to mould growth.",
 
-      "Key advice to prevent mould formation includes reducing humidity (efficient bathroom & kitchen extractor fans), improving ventilation (open windows), add insulation to external walls, fix any leaks.",
+      "Key advice to prevent mould formation includes reducing humidity (efficient bathroom & kitchen extractor fans), improving ventilation (open windows), adding insulation to external-side walls and fixing any leaks.",
+
+      "To put things into perspective, an average family of four can release around 7 to 15 liters of water per day through activities such as cooking, showers, breathing, and perspiration with cooking and showering being the main contributors to indoor moisture",
 
       "Please check out our “Information Page” for more information.",
     ],
@@ -188,7 +190,7 @@ export const faq = [
     id: 3,
     question: "What does your professional mould treatment plan consist of?",
     answer: [
-      "For the safety and well-being of our customers, it is highly recommended to vacate the premises during the mould treatment process. Leaving windows open and ensuring proper ventilation for at least one hour helps disperse any residual fumes or particles. As part of our commitment to safety, our team wears full Personal Protective Equipment (PPE), including ventilation masks, while working with our products to ensure a secure and healthy environment for everyone involved.",
+      "For the safety and well-being of our customers, it's recommended to vacate the premises during the mould treatment process. Leaving windows open and ensuring proper ventilation for at least one hour helps disperse any residual fumes or particles. As part of our commitment to safety, we wear full Personal Protective Equipment (PPE), including ventilation masks, while working with our products to ensure a secure and healthy environment for everyone involved.",
     ],
   },
   {
