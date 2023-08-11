@@ -7,6 +7,7 @@ import Navbar from "../components/Navbar";
 import type { Metadata } from "next";
 import { Inter, Mulish, Poppins, Patua_One } from "next/font/google";
 import Footer from "@/components/Footer";
+import CookieBanner from "@/components/CookieBanner";
 
 const inter = Inter({ subsets: ["latin"] });
 const mulish = Mulish({
@@ -99,6 +100,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <CookieBanner />
       </body>
     </html>
   );
