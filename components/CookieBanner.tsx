@@ -3,6 +3,11 @@
 import { getLocalStorage, setLocalStorage } from "@/lib/storageHelper";
 import { useState, useEffect } from "react";
 
+declare global {
+  interface Window {
+    gtag: any;
+  }
+}
 export default function CookieBanner() {
   const [cookieConsent, setCookieConsent] = useState(false);
 
