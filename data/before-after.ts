@@ -14,4 +14,9 @@ export const beforeAfter = [
     beforeImage: "/before-after/wardrobe-before.jpg",
     afterImage: "/before-after/wardrobe-after.jpg",
   },
+  {
+    title: "Cupboard under stairs",
+    beforeImage: "/before-after/cupboard-before.jpg",
+    afterImage: "/before-after/cupboard-after.jpg",
+  },
 ];
