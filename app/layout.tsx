@@ -30,6 +30,13 @@ export const metadata: Metadata = {
   description:
     "Proven mould removal and prevention treatments that create mould-free living spaces, promoting a healthier and comfortable home environment",
   metadataBase: new URL("https://www.dr-mould.co.uk"),
+  alternates: {
+    canonical: "/",
+    languages: {
+      "en-gb": "/en-gb",
+    },
+  },
+
   openGraph: {
     images: "/opengraph-image.png",
   },
