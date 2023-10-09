@@ -44,7 +44,7 @@ const Contact = () => {
           </div>
         </div>
         <p className="mt-10 md:mt-20 mb-10 md:mb-0 md:w-2/3 w-[75vw] text-center text-sm mx-auto opacity-70">
-          All personal data herein are processed in accordance with UK data
+          All personal data herein is processed in accordance with UK data
           protection legislation. All feasible security measures are in place.
           Further information is in our Privacy Notice.
         </p>
