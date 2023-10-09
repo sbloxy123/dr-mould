@@ -19,7 +19,6 @@ export const Slider = ({
     const rect = event.currentTarget.getBoundingClientRect();
     const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width));
     const percent = Math.max(0, Math.min((x / rect.width) * 100, 100));
-    // console.log(percent, "DESKTOP");
 
     setSliderPosition(percent);
   };
@@ -50,7 +49,7 @@ export const Slider = ({
       onTouchEnd={handleMouseUp}
     >
       <div
-        className="relative w-full max-w-[700px] aspect-[70/45] m-auto overflow-hidden select-none"
+        className="relative object-cover w-full max-w-[500px] aspect-[50/50] overflow-hidden select-none"
         onMouseMove={handleMove}
         onTouchMove={handleTouchMove}
         onMouseDown={handleMouseDown}
@@ -59,7 +58,7 @@ export const Slider = ({
         <Image alt="" fill sizes="auto" priority src={after} />
 
         <div
-          className="absolute top-0 left-0 right-0 w-full max-w-[700px] aspect-[70/45] m-auto overflow-hidden select-none"
+          className="absolute object-cover top-0 left-0 right-0 w-full max-w-[500px] aspect-[50/50] overflow-hidden select-none"
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
           <Image fill priority alt="" sizes="auto" src={before} />

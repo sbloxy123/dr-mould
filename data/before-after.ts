@@ -15,8 +15,23 @@ export const beforeAfter = [
     afterImage: "/before-after/wardrobe-after.jpg",
   },
   {
-    title: "Cupboard under stairs",
+    title: "Cupboard Under Stairs",
     beforeImage: "/before-after/cupboard-before.jpg",
     afterImage: "/before-after/cupboard-after.jpg",
+  },
+  {
+    title: "Internal Brick Feature Wall (Room 1)",
+    beforeImage: "/before-after/upstand-before.jpg",
+    afterImage: "/before-after/upstand-after.jpg",
+  },
+  {
+    title: "Internal Brick Feature Wall (Room 2)",
+    beforeImage: "/before-after/cupboard-left-before-main.png",
+    afterImage: "/before-after/cupboard-left-after-main.jpg",
+  },
+  {
+    title: "Internal Brick Feature Wall (Room 3)",
+    beforeImage: "/before-after/pillar-left-main.png",
+    afterImage: "/before-after/pillar-left-after-main.jpg",
   },
 ];
