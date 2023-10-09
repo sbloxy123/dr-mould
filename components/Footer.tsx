@@ -41,9 +41,6 @@ const Footer = () => {
             <li>
               Tel: <a href="tel:07806615231">07806 615231</a>
             </li>
-            <li>
-              Email: <a href="email:sbloxy123@gmail.com">sbloxy123@gmail.com</a>
-            </li>
           </ul>
         </div>
         <div className="h-fit py-2 px-20 bg-theme_indigo-900 text-white tracking-wider hover:bg-theme_light_green-900 ease-in-out duration-300 cursor-pointer mt-6 w-full md:w-fit">
@@ -51,7 +48,7 @@ const Footer = () => {
         </div>
       </div>
       <p className="text-sm py-12 m-auto w-fit text-center md:text-left p-4">
-        © 2022 Dr Mould, All rights reserved | Design & Build by{" "}
+        © 2023 Dr Mould, All rights reserved | Design & Build by{" "}
         <a
           className="text-blue-500 font-semibold hover:text-theme_dark_green-900"
           target="_blank"
