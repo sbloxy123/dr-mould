@@ -1,5 +1,4 @@
 import { Slider } from "@/components/ImageSlider";
-import React from "react";
 import { beforeAfter } from "../../data/before-after";
 
 const page = () => {
@@ -12,8 +11,10 @@ const page = () => {
       <div className="flex flex-wrap gap-3 justify-center py-10 content-container">
         {beforeAfter.map((data) => {
           return (
-            <div key={data.title} className="md:w-[40vw] w-full">
-              <h2 className="capitalize text-2xl py-6">{data.title}</h2>
+            <div key={data.title} className="sm:w-[40vw] w-full">
+              <h2 className="capitalize text-2xl sm:text-xl sm:py-3 py-6">
+                {data.title}
+              </h2>
               <Slider before={data.beforeImage} after={data.afterImage} />
             </div>
           );
