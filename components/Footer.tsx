@@ -6,10 +6,10 @@ const Footer = () => {
   return (
     <div className="pt-20 bg-theme_white-900">
       <div className="w-fit m-auto flex-shrink-0 flex items-center gap-2 pb-8">
-        <Image alt="Dr Mould Logo" src="/icon.png" width={30} height={30} />
+        <Image alt="Dr Mould Logo" src="/icon.png" width={50} height={30} />
         <Link
           href="/"
-          className="font-patua text-xl font-semibold text-theme_dark_green-900"
+          className="font-patua text-3xl font-semibold text-theme_dark_green-900"
         >
           Dr Mould
         </Link>
@@ -39,8 +39,15 @@ const Footer = () => {
           <h2 className="text-2xl">Enquiries</h2>
           <ul className="pt-4 text-lg">
             <li>
-              Tel: <a href="tel:07806615231">07806 615231</a>
+              Tel:{" "}
+              <a
+                className="text-theme_dark_green-900 hover:text-theme_gold-900 ease-in-out duration-300"
+                href="tel:07806615231"
+              >
+                07806 615231
+              </a>
             </li>
+            <li className="">Email: contact@dr-mould.co.uk</li>
           </ul>
         </div>
         <div className="h-fit py-2 px-20 bg-theme_indigo-900 text-white tracking-wider hover:bg-theme_light_green-900 ease-in-out duration-300 cursor-pointer mt-6 w-full md:w-fit">

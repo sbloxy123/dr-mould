@@ -25,15 +25,12 @@ const Contact = () => {
                   07806 615231
                 </a>
               </li>
-              {/* <li className="">
-                Email:{" "}
-                <a
-                  className="text-theme_dark_green-900"
-                  href="email:sbloxy123@gmail.com"
-                >
-                  sbloxy123@gmail.com
-                </a>
-              </li> */}
+              <li className="">
+                Email:{"  "}
+                {/* <span className="text-theme_dark_green-900"> */}
+                contact@dr-mould.co.uk
+                {/* </span> */}
+              </li>
             </ul>
           </div>
           <div className="md:px-10 w-full md:w-1/2">

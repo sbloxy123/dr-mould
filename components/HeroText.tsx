@@ -7,7 +7,7 @@ const HeroText = () => {
         <h1 className="text-5xl pb-12 font-patua text-theme_indigo-900">
           Dr Mould: Your Trusted Mould Treatment Solution
         </h1>
-        <p className="pb-12 p-2 w-full md:w-[80%] tracking-wide text-lg text-theme_indigo-900">
+        <p className="pl-0 pb-12 p-2 w-full md:w-[80%] tracking-wide text-lg text-theme_indigo-900">
           Reclaim your space, breathe easy, and restore beauty. Our meticulous
           approach ensures effective mould removal, leaving your home looking
           fresh and revitalized. Trust Dr Mould for top-notch mould treatment
