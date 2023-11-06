@@ -10,12 +10,12 @@ export default function Home() {
     <main className="">
       <Hero />
       <ActionBoxes />
-      <div className="pt-10">
+      <section className="pt-10">
         {mouldRemoval.map((topic) => {
           const { title, content } = topic;
           return <FeatureTopic key={title} title={title} content={content} />;
         })}
-      </div>
+      </section>
       <Contact />
       <FAQ />
     </main>

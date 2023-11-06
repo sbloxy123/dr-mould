@@ -55,12 +55,12 @@ const ActionBox = ({
         />
       </motion.div>
       {/* ========== new start ============== */}
-      <div className="relative md:hidden z-10 h-fit bg-theme_dark_green-900">
+      <article className="relative md:hidden z-10 h-fit bg-theme_dark_green-900">
         <div className="relative h-auto">
           <Image
             className="opacity-20 bg-center relative object-cover h-auto"
             src={img}
-            alt="background image"
+            alt="background image of mould"
             fill
             sizes="800"
             placeholder="blur"
@@ -100,9 +100,9 @@ const ActionBox = ({
             </motion.div>
           </div>
         </div>
-      </div>
+      </article>
       {/* ============== new end ============== */}
-      <div
+      <article
         className={`${color()} ${
           idx % 2 !== 0 && "order-1"
         } text-theme_white-900 h-[60vh] md:flex hidden`}
@@ -133,7 +133,7 @@ const ActionBox = ({
             </Link>
           </div>
         </motion.div>
-      </div>
+      </article>
     </div>
   );
 };

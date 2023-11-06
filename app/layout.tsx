@@ -43,9 +43,10 @@ export const metadata: Metadata = {
 };
 const jsonLd: WithContext<LocalBusiness> = {
   "@context": "https://schema.org",
-  "@type": "LocalBusiness",
+  "@type": "HomeAndConstructionBusiness",
   "@id": "https://dr-mould.co.uk/",
   name: "Dr Mould - Local Mould Treatment and Cleaning Service",
+  description: "Professional mold removal, treatment and cleaning services.",
   url: "https://dr-mould.co.uk/",
   logo: "https://www.dr-mould.co.uk/favicon.ico",
   address: {
@@ -56,9 +57,18 @@ const jsonLd: WithContext<LocalBusiness> = {
     addressCountry: "United Kingdom",
     postalCode: "SG9 0EA",
   },
-  telephone: "07806615231",
-  email: "stuartjbloxham@gmail.com",
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "book a mould treatment",
+    telephone: "+447806615231",
+    email: "contact@dr-mould.co.uk",
+  },
   image: ["https://www.dr-mould.co.uk/opengraph-image.png?ad00cb6df7787160"],
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 51.94868891616687,
+    longitude: 0.021126236728081227,
+  },
   openingHoursSpecification: {
     "@type": "OpeningHoursSpecification",
     dayOfWeek: [
@@ -86,6 +96,7 @@ const jsonLd: WithContext<LocalBusiness> = {
     opens: "08:00",
     closes: "17:30",
   },
+  areaServed: "Hertfordshire, Essex, Cambridgeshire, London",
 };
 
 export default function RootLayout({

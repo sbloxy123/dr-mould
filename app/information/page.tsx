@@ -30,7 +30,7 @@ const page = () => {
       </div>
       <div className="w-[80%] mb-20 m-auto border-b-2 border-theme_indigo-900"></div>
       {/* ==== REDUCE MOULD GROWTH ==== */}
-      <div className="content-container">
+      <article className="content-container">
         <h2 className="text-xl pb-16 font-patua capitalize">
           {reduceMould.title}
         </h2>
@@ -46,11 +46,13 @@ const page = () => {
             );
           })}
         </div>
-      </div>
+      </article>
 
       <div className="w-[80%] mt-20 m-auto border-b-2 border-theme_indigo-900"></div>
       {/* ===== FAQ ===== */}
-      <FAQ />
+      <section>
+        <FAQ />
+      </section>
     </div>
   );
 };

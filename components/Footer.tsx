@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="pt-20 bg-theme_white-900">
+    <footer className="pt-20 bg-theme_white-900">
       <div className="w-fit m-auto flex-shrink-0 flex items-center gap-2 pb-8">
         <Image alt="Dr Mould Logo" src="/icon.png" width={50} height={30} />
         <Link
@@ -64,7 +64,7 @@ const Footer = () => {
           Bloxy Web Services
         </a>
       </p>
-    </div>
+    </footer>
   );
 };
 

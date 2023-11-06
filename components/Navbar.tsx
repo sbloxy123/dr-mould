@@ -9,7 +9,7 @@ function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="z-30">
-      <nav className="bg-theme_white-900">
+      <header className="bg-theme_white-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 ">
             <div className="flex-shrink-0 flex items-center gap-2">
@@ -28,7 +28,7 @@ function Nav() {
             </div>
             <div className="flex items-center">
               <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4 ">
+                <nav className="ml-10 flex items-baseline space-x-4 ">
                   <Link
                     href="/"
                     className="nav-link  px-3 py-2 text-md font-sans font-light"
@@ -56,7 +56,7 @@ function Nav() {
                   >
                     Contact
                   </Link>
-                </div>
+                </nav>
               </div>
             </div>
             <div className="-mr-2 flex md:hidden">
@@ -116,7 +116,7 @@ function Nav() {
           leaveTo="opacity-0 scale-95"
         >
           {(ref) => (
-            <div className="md:hidden z-20" id="mobile-menu">
+            <nav className="md:hidden z-20" id="mobile-menu">
               <div ref={ref} className="px-2 pt-2 pb-3 space-y-1 sm:px-3 z-30">
                 <Link
                   href="/"
@@ -150,10 +150,10 @@ function Nav() {
                   Contact
                 </Link>
               </div>
-            </div>
+            </nav>
           )}
         </Transition>
-      </nav>
+      </header>
     </div>
   );
 }

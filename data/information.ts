@@ -200,4 +200,11 @@ export const faq = [
       "The time frame varies depending on the extent of the mould infestation. We aim to complete the treatment as efficiently as possible without compromising quality.",
     ],
   },
+  {
+    id: 5,
+    question: "What areas do you serve?",
+    answer: [
+      "We cover Hertfordshire, Cambridgeshire, Essex, and London as our primary service areas. However, we are willing to travel further for the right jobs. Your satisfaction is our priority, and we aim to accommodate your needs to the best of our ability.",
+    ],
+  },
 ];

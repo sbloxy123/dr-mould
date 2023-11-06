@@ -55,13 +55,25 @@ export const Slider = ({
         onMouseDown={handleMouseDown}
         onTouchStart={handleMouseDown}
       >
-        <Image alt="" fill sizes="auto" priority src={after} />
+        <Image
+          alt="picture of wall after treatment"
+          fill
+          sizes="auto"
+          priority
+          src={after}
+        />
 
         <div
           className="absolute object-cover top-0 left-0 right-0 w-full max-w-[500px] aspect-[50/50] overflow-hidden select-none"
           style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
         >
-          <Image fill priority alt="" sizes="auto" src={before} />
+          <Image
+            fill
+            priority
+            alt="picture of wall before treatment"
+            sizes="auto"
+            src={before}
+          />
         </div>
         <div
           className="absolute top-0 bottom-0 w-1 bg-theme_indigo-900 cursor-ew-resize"

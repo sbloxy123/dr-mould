@@ -9,7 +9,7 @@ const FeatureTopic = ({
   content: string[];
 }) => {
   return (
-    <div key={title} className="content-container grid grid-cols-12 mb-10">
+    <article key={title} className="content-container grid grid-cols-12 mb-10">
       <motion.div
         initial={{ x: -100 }}
         whileInView={{ x: 0 }}
@@ -39,7 +39,7 @@ const FeatureTopic = ({
           );
         })}
       </div>
-    </div>
+    </article>
   );
 };
 

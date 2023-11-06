@@ -3,7 +3,7 @@ import featureContent from "../data/feature-content";
 
 const ActionBoxes = () => {
   return (
-    <div>
+    <section>
       {featureContent?.map((single, index) => {
         return (
           <div key={index}>
@@ -18,7 +18,7 @@ const ActionBoxes = () => {
           </div>
         );
       })}
-    </div>
+    </section>
   );
 };
 

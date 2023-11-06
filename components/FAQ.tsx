@@ -15,7 +15,7 @@ const FAQ = () => {
 
   return (
     <>
-      <div className="content-container w-full md:w-[70vw] pb-20">
+      <section className="content-container w-full md:w-[70vw] pb-20">
         <h2 className="text-2xl font-patua py-16">FAQ</h2>
         {faq.map((topic) => {
           return (
@@ -53,7 +53,7 @@ const FAQ = () => {
             </motion.div>
           );
         })}
-      </div>
+      </section>
     </>
   );
 };

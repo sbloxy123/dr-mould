@@ -10,8 +10,9 @@ const HeroText = () => {
         <p className="pl-0 pb-12 p-2 w-full md:w-[80%] tracking-wide text-lg text-theme_indigo-900">
           Reclaim your space, breathe easy, and restore beauty. Our meticulous
           approach ensures effective mould removal, leaving your home looking
-          fresh and revitalized. Trust Dr Mould for top-notch mould treatment
-          services.
+          fresh and revitalised. Trust Dr Mould for professional and thorough
+          mould treatment services in the Hertfordshire, Essex, Cambridgshire
+          and London areas.
         </p>
         <div className="bg-theme_indigo-900 cursor-pointer border-2 border-theme_indigo-900 ease-in-out duration-300  hover:border-2 hover:border-theme_indigo-900 hover:bg-theme_gold-900 rounded-sm w-full md:w-[40%]">
           <p className="m-auto text-lg capitalize text-theme_white-900 py-3 w-fit">

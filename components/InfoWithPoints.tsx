@@ -18,7 +18,7 @@ const InfoWithPoints = ({
   conclusion: string;
 }) => {
   return (
-    <div key={title}>
+    <article key={title}>
       <div className="content-container grid grid-cols-12 mb-10 pb-10 ">
         <motion.div
           initial={{ x: -100, opacity: 0 }}
@@ -76,7 +76,7 @@ const InfoWithPoints = ({
         </div>
       </div>
       <div className="w-[80%] mb-20 m-auto border-b-2 border-theme_indigo-900"></div>
-    </div>
+    </article>
   );
 };
 
