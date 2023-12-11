@@ -3,7 +3,7 @@ import ContactForm from "./Form";
 
 const Contact = () => {
   return (
-    <section className="w-screen flex items-center md:h-screen h-fit last:pt-10  bg-theme_indigo-900 text-theme_white-900">
+    <section className="relative w-screen flex items-center md:h-screen h-fit last:pt-10  bg-theme_indigo-900 text-theme_white-900">
       <div className="w-fit m-auto flex flex-col content-center">
         <div className="flex flex-col md:flex-row lg:w-[80vw] w-[95vw] m-auto">
           <section className="w-full md:w-1/2 md:px-10 text-center md:text-left ">

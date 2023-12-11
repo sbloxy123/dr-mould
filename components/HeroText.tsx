@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const HeroText = () => {
@@ -14,11 +15,12 @@ const HeroText = () => {
           mould treatment services in the Hertfordshire, Essex, Cambridgshire
           and London areas.
         </p>
-        <div className="bg-theme_indigo-900 cursor-pointer border-2 border-theme_indigo-900 ease-in-out duration-300  hover:border-2 hover:border-theme_indigo-900 hover:bg-theme_gold-900 rounded-sm w-full md:w-[40%]">
-          <p className="m-auto text-lg capitalize text-theme_white-900 py-3 w-fit">
-            Contact us
-          </p>
-        </div>
+        <Link
+          href="/contact"
+          className="bg-theme_indigo-900 cursor-pointer border-2 border-theme_indigo-900 ease-in-out duration-300  hover:border-2 hover:border-theme_indigo-900 hover:bg-theme_gold-900 rounded-sm md:w-[40%] m-auto text-lg capitalize text-theme_white-900 py-3 px-16 w-fit"
+        >
+          Contact us
+        </Link>
       </div>
     </div>
   );

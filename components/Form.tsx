@@ -43,6 +43,9 @@ const ContactForm = () => {
       // Show success message or redirect to a thank you page
       // console.log("Email sent successfully!");
     } catch (error) {
+      toast.error(
+        "Oops.. something went wrong! If the issue persists, please email us directly 🙂"
+      );
       // Handle error
       // console.error("Failed to send email:", error);
     } finally {
@@ -61,6 +64,17 @@ const ContactForm = () => {
       >
         <Form>
           <div className="">
+            {isLoading ? (
+              <div className="absolute h-full w-full top-0 bottom-0 left-0 right-0 bg-gray-300 opacity-30 flex justify-center items-center">
+                <div className="h-20 w-20 bg-theme_white-900 rounded-lg flex justify-center items-center">
+                  <div className="animate-spin transition-transform duration-10000 ease-in-out infinite bg-white text-4xl">
+                    ⏳
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div></div>
+            )}
             <div className="flex flex-wrap -m-2">
               <div className="p-2 w-1/2">
                 <div className="relative">
