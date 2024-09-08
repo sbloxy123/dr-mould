@@ -21,18 +21,19 @@ module.exports = withMT({
 
         theme_light_green: {
           900: "rgb(84, 160, 43, 1)",
+          300: "rgb(84, 160, 43, 0.3)",
         },
         theme_dark_green: {
           900: "rgb(46, 131, 87, 1)",
+          300: "rgb(46, 131, 87, 0.3)",
         },
         theme_indigo: {
           900: "rgb(42, 4, 52, 1)",
-        },
-        theme_indigo: {
-          900: "rgb(42, 4, 52, 1)",
+          300: "rgb(42, 4, 52, 0.3)",
         },
         theme_gold: {
           900: "rgb(177, 159, 50, 1)",
+          300: "rgb(177, 159, 50, 0.3)",
         },
       },
       screens: {

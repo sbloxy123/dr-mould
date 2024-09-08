@@ -110,3 +110,15 @@
     @apply text-[36px] leading-[48px] font-semibold;
   }
 }
+
+.hero__colour__overlay {
+  background: linear-gradient(
+    to top,
+    rgba(46, 131, 87, 0.2),
+    rgba(46, 131, 87, 1)
+  );
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}

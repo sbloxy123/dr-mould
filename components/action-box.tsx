@@ -87,7 +87,7 @@ const ActionBox = ({
               {content.map((para: string) => (
                 <p
                   key={para}
-                  className="text-center leading-6 pb-4 sm:text-sm lg:text-base"
+                  className="text-center leading-6 pb-4 sm:text-sm lg:text-base max-w-[500px]"
                 >
                   {para}
                 </p>
@@ -122,7 +122,7 @@ const ActionBox = ({
           {content.map((para: string) => (
             <p
               key={para}
-              className="text-center leading-6 pb-4 sm:text-sm lg:text-base"
+              className="text-center leading-6 pb-4 sm:text-sm lg:text-base max-w-[500px]"
             >
               {para}
             </p>

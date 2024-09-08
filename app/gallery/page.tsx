@@ -11,7 +11,7 @@ const page = () => {
       <div className="flex flex-wrap gap-3 justify-center py-10 content-container">
         {beforeAfter.map((data) => {
           return (
-            <div key={data.title} className="sm:w-[40vw] w-full">
+            <div key={data.title} className="w-full max-w-[500px]">
               <h2 className="capitalize text-2xl sm:text-xl sm:py-3 py-6">
                 {data.title}
               </h2>

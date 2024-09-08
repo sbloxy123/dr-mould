@@ -25,12 +25,13 @@ const InfoCard = ({
         bounce: 0,
       }}
       viewport={{ once: true }}
+      className="w-full"
     >
-      <Card className="lg:w-[90%] max-w-[48rem] flex-row md:h-60 rounded-r-sm ">
+      <Card className="lg:w-[90%] max-w-[48rem] flex-col sm:flex-row md:h-60  overflow-hidden mx-auto">
         <CardHeader
           shadow={false}
           floated={false}
-          className="m-0 w-2/5 shrink-0 rounded-r-none rounded-l-sm"
+          className="m-0 w-[100%] aspect-[2/1] sm:w-2/5 shrink-0 rounded-r-none rounded-l-sm"
         >
           <Image
             src={image}

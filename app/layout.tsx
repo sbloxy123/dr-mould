@@ -96,7 +96,7 @@ const jsonLd: WithContext<LocalBusiness> = {
     opens: "08:00",
     closes: "17:30",
   },
-  areaServed: "Hertfordshire, Essex, Cambridgeshire, London",
+  areaServed: "Hertfordshire, Essex, Cambridgeshire",
 };
 
 export default function RootLayout({

@@ -30,11 +30,11 @@ const page = () => {
       </div>
       <div className="w-[80%] mb-20 m-auto border-b-2 border-theme_indigo-900"></div>
       {/* ==== REDUCE MOULD GROWTH ==== */}
-      <article className="content-container">
+      <article className="content-container sm:px-[6rem]">
         <h2 className="text-xl pb-16 font-patua capitalize">
           {reduceMould.title}
         </h2>
-        <div className="flex flex-wrap w-fit  justify-center gap-3">
+        <div className="flex flex-wrap w-fit justify-center lg:grid-cols-2 lg:grid gap-[1.4rem]">
           {reduceMould.factors.map((option) => {
             return (
               <InfoCard
