@@ -47,7 +47,7 @@ const Footer = () => {
                 07806 615231
               </a>
             </li>
-            <li className="">Email: contact@dr-mould.co.uk</li>
+            <li className="">Email: drmouldservices@gmail.com</li>
           </ul>
         </div>
         <div className="h-fit py-2 px-20 bg-theme_indigo-900 text-white tracking-wider hover:bg-theme_light_green-900 ease-in-out duration-300 cursor-pointer mt-6 w-full md:w-fit">

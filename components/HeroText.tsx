@@ -5,7 +5,7 @@ const HeroText = () => {
   return (
     <div className="relative flex h-screen content-container">
       <div className="w-[100vw] justify-center text-center md:text-left md:w-[60vw] my-auto">
-        <h1 className="text-5xl pb-3 font-patua text-theme_indigo-900 uppercase tracking-wide">
+        <h1 className="text-4xl pb-3 font-patua text-theme_indigo-900 uppercase tracking-wide">
           Dr Mould: Your Trusted Mould Treatment Solution
         </h1>
         <h3 className="text-3xl pb-8 tracking-wide font-normal text-theme_indigo-900">

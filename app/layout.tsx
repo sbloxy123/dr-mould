@@ -61,7 +61,7 @@ const jsonLd: WithContext<LocalBusiness> = {
     "@type": "ContactPoint",
     contactType: "book a mould treatment",
     telephone: "+447806615231",
-    email: "contact@dr-mould.co.uk",
+    email: "drmouldservices@gmail.com",
   },
   image: ["https://www.dr-mould.co.uk/opengraph-image.png?ad00cb6df7787160"],
   geo: {

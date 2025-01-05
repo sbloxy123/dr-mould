@@ -28,7 +28,7 @@ const Contact = () => {
               <li className="">
                 Email:{"  "}
                 {/* <span className="text-theme_dark_green-900"> */}
-                contact@dr-mould.co.uk
+                drmouldservices@gmail.com
                 {/* </span> */}
               </li>
             </ul>
