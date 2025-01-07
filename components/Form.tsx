@@ -58,7 +58,7 @@ const ContactForm = () => {
   return (
     <>
       <Formik
-        initialValues={{ name: "", email: "", message: "" }}
+        initialValues={{ name: "", email: "", phone: "", address: "", message: "" }}
         validationSchema={toFormikValidationSchema(validationSchema)}
         onSubmit={handleSubmit}
       >
@@ -107,6 +107,42 @@ const ContactForm = () => {
                   />
                   <ErrorMessage
                     name="email"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
+              </div>
+              <div className="p-2 w-1/2">
+                <div className="relative">
+                  <label className="leading-7 text-sm text-theme_white-900">
+                    Phone Number
+                  </label>
+                  <Field
+                    type="phone"
+                    id="phone"
+                    name="phone"
+                    className="w-full bg-gray-100 bg-opacity-80 rounded-sm border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  />
+                  <ErrorMessage
+                    name="phone"
+                    component="div"
+                    className="text-red-500"
+                  />
+                </div>
+              </div>
+              <div className="p-2 w-1/2">
+                <div className="relative">
+                  <label className="leading-7 text-sm text-theme_white-900">
+                    Location
+                  </label>
+                  <Field
+                    type="address"
+                    id="address"
+                    name="address"
+                    className="w-full bg-gray-100 bg-opacity-80 rounded-sm border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                  />
+                  <ErrorMessage
+                    name="address"
                     component="div"
                     className="text-red-500"
                   />
