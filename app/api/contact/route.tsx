@@ -5,11 +5,11 @@ import { Email } from "@/components/Email";
 
 export async function POST(req: NextRequest, res: NextResponse) {
   const body = await req.json();
-  const { name, email, message, address, phone } = body;
+  const { name, email, message, address, phone, images } = body;
 
   // from react-email:
   const emailHtml = render(
-    <Email name={name} email={email} message={message} address={address} phone={phone}/>
+    <Email name={name} email={email} message={message} address={address} phone={phone} images={images}/>
   );
 
   const options = {

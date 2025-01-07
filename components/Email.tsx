@@ -1,5 +1,4 @@
-import React from "react";
-
+// Email.tsx
 import {
   Body,
   Container,
@@ -8,6 +7,7 @@ import {
   Html,
   Tailwind,
   Text,
+  Img,
 } from "@react-email/components";
 
 interface EmailProps {
@@ -16,6 +16,7 @@ interface EmailProps {
   message: string;
   phone: string;
   address: string;
+  images: string[]; // Array of image URLs
 }
 
 export const Email: React.FC<Readonly<EmailProps>> = ({
@@ -23,8 +24,8 @@ export const Email: React.FC<Readonly<EmailProps>> = ({
   email,
   message,
   phone,
-  address
-
+  address,
+  images,
 }) => {
   return (
     <Html>
@@ -39,17 +40,35 @@ export const Email: React.FC<Readonly<EmailProps>> = ({
               Hello Stuart,
             </Text>
             <Text className="text-[14px] leading-[24px] text-black">
-              You got an email from <strong>{name}</strong>. 
+              You got an email from <strong>{name}</strong>.
               <br /><br />
               <span className="bold uppercase">Their details:</span> <br/>
               <span className="underline">Email address:</span> {email}
               <br />
-              <span className="underline">location:</span> {address}.
+              <span className="underline">Location:</span> {address}.
               <br />
               <span className="underline">Contact number:</span> {phone}.
               <br /><br />
               <span className="underline"><strong>Message:</strong></span> <br />
               {message} <br />
+              {images && images.length > 0 && (
+                <>
+                  <br />
+                  <span className="underline"><strong>Uploaded Images:</strong></span>
+                  <br />
+                  <div className="flex flex-wrap">
+                    {images.map((url, index) => (
+                      <a key={index} href={url} target="_blank" rel="noopener noreferrer">
+                      <Img
+                        src={url}
+                        alt={`Uploaded Image ${index + 1}`}
+                        className="w-32 h-32 object-cover m-1"
+                      />
+                    </a>
+                    ))}
+                  </div>
+                </>
+              )}
             </Text>
           </Container>
         </Body>
