@@ -31,7 +31,10 @@ const ContactForm = () => {
   const handleWidgetCallback = (error: any, result: any) => {
     if (!error && result && result.event === "success") {
       console.log("Uploaded image info:", result.info);
-      setUploadedImages((prevImages) => [...prevImages, result.info.secure_url]);
+      setUploadedImages((prevImages) => [
+        ...prevImages,
+        result.info.secure_url,
+      ]);
     } else if (error) {
       console.error("Cloudinary Widget Error:", error);
       toast.error("Failed to upload image. Please try again.");
@@ -50,7 +53,7 @@ const ContactForm = () => {
       {/* Include Cloudinary's Upload Widget script using Next.js's Script component */}
       <Script
         src="https://widget.cloudinary.com/v2.0/global/all.js"
-        strategy="lazyOnload" // Load the script lazily during idle time
+        strategy="afterInteractive" // Load the script lazily during idle time
         onLoad={() => {
           console.log("Cloudinary Widget script loaded.");
           if (window.cloudinary && !widgetRef.current) {
@@ -60,7 +63,7 @@ const ContactForm = () => {
                 cloudName: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME, // Your Cloudinary cloud name
                 uploadPreset: process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET, // Your unsigned upload preset
                 multiple: true, // Allow multiple file uploads
-                sources: ["local", "url", "camera"], // Sources for uploading
+                sources: ["local", "camera"], // Sources for uploading
                 folder: "contact_form_uploads", // Optional: specify a folder in Cloudinary
                 maxFiles: 5, // Maximum number of files
                 maxFileSize: 5 * 1024 * 1024, // 5MB per file
@@ -285,14 +288,14 @@ const ContactForm = () => {
 
                 {/* Submit Button */}
                 <div className="p-2 w-full">
-                <button
+                  <button
                     type="submit"
-                  disabled={isLoading}
-                  className="text-theme_indigo-900 w-full bg-theme_gold-900 border-0 py-2 px-8 focus:outline-none ease-in-out duration-300 hover:bg-theme_light_green-900 rounded-sm text-lg"
-                >
-                  Submit
-                </button>
-              </div>
+                    disabled={isLoading}
+                    className="text-theme_indigo-900 w-full bg-theme_gold-900 border-0 py-2 px-8 focus:outline-none ease-in-out duration-300 hover:bg-theme_light_green-900 rounded-sm text-lg"
+                  >
+                    Submit
+                  </button>
+                </div>
               </div>
             </div>
           </Form>
