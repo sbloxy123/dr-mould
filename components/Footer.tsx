@@ -55,13 +55,14 @@ const Footer = () => {
         </div>
       </div>
       <p className="text-sm py-12 m-auto w-fit text-center md:text-left p-4">
-        © 2023 Dr Mould, All rights reserved | Design & Build by{" "}
+        © {new Date().getFullYear()} Dr Mould, All rights reserved | Design &
+        Build by{" "}
         <a
           className="text-blue-500 font-semibold hover:text-theme_dark_green-900"
           target="_blank"
-          href="https://www.bloxywebservices.co.uk/"
+          href="https://www.bloxie.co.uk/"
         >
-          Bloxy Web Services
+          Bloxie
         </a>
       </p>
     </footer>
