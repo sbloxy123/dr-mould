@@ -105,17 +105,10 @@ const ContactForm = () => {
           }
         }}
       >
-        {() => (
+        {({ isSubmitting }) => (
           <Form>
             <div className="">
-              {isLoading && (
-                <div className="absolute h-full w-full top-0 bottom-0 left-0 right-0 bg-gray-300 opacity-30 flex justify-center items-center">
-                  <div className="h-20 w-20 bg-white rounded-lg flex justify-center items-center">
-                    <div className="animate-spin bg-white text-4xl">⏳</div>
-                  </div>
-                </div>
-              )}
-              <div className="flex flex-wrap -m-2">
+              <div className={`flex flex-wrap -m-2 ${isLoading ? "opacity-60 pointer-events-none" : ""}`}>
                 {/* Name Field */}
                 <div className="p-2 w-1/2">
                   <div className="relative">
@@ -263,9 +256,15 @@ const ContactForm = () => {
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="text-theme_indigo-900 w-full bg-theme_gold-900 border-0 py-2 px-8 focus:outline-none ease-in-out duration-300 hover:bg-theme_light_green-900 rounded-sm text-lg"
+                    className="text-theme_indigo-900 w-full bg-theme_gold-900 border-0 py-2 px-8 focus:outline-none ease-in-out duration-300 hover:bg-theme_light_green-900 rounded-sm text-lg disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
-                    Submit
+                    {isLoading && (
+                      <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                      </svg>
+                    )}
+                    {isLoading ? "Sending..." : "Submit"}
                   </button>
                 </div>
               </div>
