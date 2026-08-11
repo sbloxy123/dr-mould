@@ -53,7 +53,7 @@ const ContactForm = () => {
       {/* Include Cloudinary's Upload Widget script using Next.js's Script component */}
       <Script
         src="https://widget.cloudinary.com/v2.0/global/all.js"
-        strategy="afterInteractive" // Load the script lazily during idle time
+        strategy="afterInteractive"
         onLoad={() => {
           console.log("Cloudinary Widget script loaded.");
           if (window.cloudinary && !widgetRef.current) {

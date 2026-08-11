@@ -42,9 +42,9 @@ const Footer = () => {
               Tel:{" "}
               <a
                 className="text-theme_dark_green-900 hover:text-theme_gold-900 ease-in-out duration-300"
-                href="tel:07806615231"
+                href="tel:07364233567"
               >
-                07806 615231
+                07364 233567
               </a>
             </li>
             <li className="">Email: drmouldservices@gmail.com</li>
