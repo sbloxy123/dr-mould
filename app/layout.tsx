@@ -3,42 +3,46 @@ import "react-toastify/dist/ReactToastify.css";
 import { LocalBusiness, WithContext } from "schema-dts";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
-import Navbar from "../components/Navbar";
 import type { Metadata } from "next";
-import { Inter, Mulish, Poppins, Patua_One } from "next/font/google";
-import Footer from "@/components/Footer";
+import { Fraunces, Figtree } from "next/font/google";
+import TopBar from "@/components/layout/TopBar";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import MobileCallBar from "@/components/layout/MobileCallBar";
 import CookieBanner from "@/components/CookieBanner";
+import { site } from "@/data/site";
 
-const inter = Inter({ subsets: ["latin"] });
-const mulish = Mulish({
-  weight: ["300", "400", "500", "600", "700"],
+// Redesign fonts: Fraunces for display, Figtree for body and UI.
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-mulish",
+  axes: ["opsz"],
+  display: "swap",
+  variable: "--font-display",
 });
-const poppins = Poppins({
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
+const figtree = Figtree({
   subsets: ["latin"],
-  variable: "--font-poppins",
+  display: "swap",
+  variable: "--font-body",
 });
-const patua = Patua_One({
-  weight: ["400"],
-  subsets: ["latin"],
-  variable: "--font-patua",
-});
+
 export const metadata: Metadata = {
-  title: "Dr Mould | Effective Mould Solutions for Healthier Homes",
+  // Defaults for pages without their own metadata (e.g. the 404 page).
+  // Each page sets its own title, description and canonical URL.
+  title: "Dr Mould | Mould Removal & Treatment in Hertfordshire, Essex & Cambridgeshire",
   description:
-    "Proven mould removal and prevention treatments that create mould-free living spaces, promoting a healthier and comfortable home environment",
-  metadataBase: new URL("https://www.dr-mould.co.uk"),
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-gb": "/en-gb",
-    },
-  },
-
+    "We safely remove mould, treat the affected areas and help you tackle what’s causing it, across Hertfordshire, Essex and Cambridgeshire.",
+  metadataBase: new URL(site.url),
   openGraph: {
+    siteName: site.name,
+    locale: "en_GB",
+    type: "website",
     images: "/opengraph-image.png",
+  },
+  // viewport-fit=cover lets the mobile call bar pad for the iPhone home bar.
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    viewportFit: "cover",
   },
 };
 const jsonLd: WithContext<LocalBusiness> = {
@@ -48,7 +52,7 @@ const jsonLd: WithContext<LocalBusiness> = {
   name: "Dr Mould - Local Mould Treatment and Cleaning Service",
   description: "Professional mold removal, treatment and cleaning services.",
   url: "https://dr-mould.co.uk/",
-  logo: "https://www.dr-mould.co.uk/favicon.ico",
+  logo: "https://www.dr-mould.co.uk/logo.png",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Hare Street",
@@ -60,8 +64,8 @@ const jsonLd: WithContext<LocalBusiness> = {
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "book a mould treatment",
-    telephone: "+447806615231",
-    email: "drmouldservices@gmail.com",
+    telephone: site.phoneIntl,
+    email: site.email,
   },
   image: ["https://www.dr-mould.co.uk/opengraph-image.png?ad00cb6df7787160"],
   geo: {
@@ -105,19 +109,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" style={{ scrollBehavior: "smooth" }}>
-      <GoogleAnalytics GA_MEASUREMENT_ID="G-KSTFZWW3Y6" />
-
+    <html lang="en-GB">
       <body
-        className={`${mulish.variable}  ${poppins.variable} ${patua.variable}`}
+        className={`${fraunces.variable} ${figtree.variable}`}
       >
+        {/* Keep analytics before CookieBanner: gtag must exist before the
+            banner applies the stored consent. */}
+        <GoogleAnalytics GA_MEASUREMENT_ID="G-KSTFZWW3Y6" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Navbar />
-        {children}
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-paper focus:px-5 focus:py-3 focus:font-semibold focus:text-forest-700 focus:shadow-soft"
+        >
+          Skip to content
+        </a>
+        <TopBar />
+        <Header />
+        <main id="main" tabIndex={-1} className="focus:outline-none">
+          {children}
+        </main>
         <Footer />
+        <MobileCallBar />
         <CookieBanner />
       </body>
     </html>

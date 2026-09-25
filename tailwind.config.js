@@ -1,66 +1,79 @@
 /** @type {import('tailwindcss').Config} */
-const withMT = require("@material-tailwind/react/utils/withMT");
-
-module.exports = withMT({
+module.exports = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./data/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
-      backgroundImage: {
-        "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-conic":
-          "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-      },
+      // Design tokens: see redesign/HANDOVER.md section 2.
       colors: {
-        theme_white: {
-          900: "rgb(247, 248, 250, 1)",
+        forest: {
+          900: "#16372A", // top bar, dark bands, footer, headings
+          700: "#1E4A38", // primary buttons, quote panel, icon tiles, links
         },
-
-        theme_light_green: {
-          900: "rgb(84, 160, 43, 1)",
-          300: "rgb(84, 160, 43, 0.3)",
+        leaf: {
+          700: "#2B7B52", // eyebrow text (4.5:1 on linen; 600 is only 4.2:1)
+          600: "#2E8357", // active nav, link hover, check icons, focus ring
         },
-        theme_dark_green: {
-          900: "rgb(46, 131, 87, 1)",
-          300: "rgb(46, 131, 87, 0.3)",
+        logo: "#347D2E",
+        sage: {
+          50: "#F2F7F1", // photo upload drop zone
+          100: "#E4EEDF", // chips, icon backgrounds, step circles
         },
-        theme_indigo: {
-          900: "rgb(42, 4, 52, 1)",
-          300: "rgb(42, 4, 52, 0.3)",
+        linen: "#F7F3EA", // page background
+        paper: "#FFFDF8", // header, cards, form panels
+        sand: {
+          100: "#EFE9DC", // inactive filter badge
+          200: "#E6DFCF", // card and header borders
+          rule: "#E0D8C6", // gallery filter toolbar rule
+          300: "#D9D0BC", // FAQ and list dividers
+          400: "#CFC6B2", // input borders
         },
-        theme_gold: {
-          900: "rgb(177, 159, 50, 1)",
-          300: "rgb(177, 159, 50, 0.3)",
+        ink: {
+          900: "#1F2A24", // primary text
+          700: "#3D4A43", // body copy
+          500: "#5A6660", // muted and caption text
         },
+        gold: {
+          400: "#E3B55B", // "After" tags, eyebrows and icons on dark
+          600: "#B7832F", // step numbers (large text only)
+        },
+        amber: {
+          50: "#FBF1DC", // health note background
+          700: "#8A5A12", // health note icon
+          900: "#5C3B08", // health note text
+        },
+        mist: {
+          200: "#D5E0D8", // text on dark green
+          300: "#A9BDB0", // muted text on dark green
+        },
+        danger: "#B42318", // form errors
       },
-      screens: {
-        "2xsmall": "320px",
-        xsmall: "512px",
-        small: "1024px",
-        medium: "1280px",
-        large: "1440px",
-        xlarge: "1680px",
-        "2xlarge": "1920px",
+      boxShadow: {
+        hero: "0 1px 0 #E6DFCF, 0 24px 48px -24px rgba(22,55,42,0.35)",
+        handle: "0 4px 14px rgba(22,55,42,0.35)",
+        callbar: "0 -8px 24px -12px rgba(22,55,42,0.35)",
+        soft: "0 12px 32px -12px rgba(22,55,42,0.28)",
+      },
+      maxWidth: {
+        content: "1200px",
       },
       fontFamily: {
         sans: [
-          "Inter",
+          "var(--font-body)",
+          "system-ui",
           "-apple-system",
-          "BlinkMacSystemFont",
           "Segoe UI",
           "Roboto",
           "Helvetica Neue",
-          "Ubuntu",
           "sans-serif",
         ],
-        poppins: ["var(--font-poppins)"],
-        patua: ["var(--font-patua)"],
-        mulish: ["var(--font-mulish)"],
+        body: ["var(--font-body)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
       },
     },
   },
   plugins: [],
-});
+};

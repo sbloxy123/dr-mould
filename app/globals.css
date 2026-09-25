@@ -2,123 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---- Redesign base styles (redesign/HANDOVER.md section 2) ---- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-linen font-body text-ink-900 antialiased;
+  }
+
+  /* Visible keyboard focus ring on every interactive element. */
+  :focus-visible {
+    outline: 2px solid #2e8357;
+    outline-offset: 2px;
+  }
+
+  /* Anchor jumps land below the header, not under it. */
+  [id] {
+    scroll-margin-top: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* react-toastify theme. Set on body (where the font variables live) so these
+   override the library's :root defaults for everything inside the page. */
+body {
+  --toastify-font-family: var(--font-body), system-ui, sans-serif;
+  --toastify-color-light: #fffdf8;
+  --toastify-text-color-light: #1f2a24;
+  --toastify-color-success: #1e4a38;
+  --toastify-color-error: #b42318;
+  --toastify-icon-color-success: #1e4a38;
+  --toastify-icon-color-error: #b42318;
+  --toastify-color-progress-success: #1e4a38;
+  --toastify-color-progress-error: #b42318;
+  --toastify-color-progress-light: #2e8357;
+}
+
+.Toastify .Toastify__toast {
+  border: 1px solid #e6dfcf;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px -12px rgba(22, 55, 42, 0.28);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
 @layer utilities {
-  /* Chrome, Safari and Opera */
+  /* Hide scrollbars on sideways-scrolling rows (gallery filter chips). */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
 
-  .no-scrollbar::-webkit-scrollbar-track {
-    background-color: transparent;
-  }
-
   .no-scrollbar {
-    -ms-overflow-style: none; /* IE and Edge */
-    scrollbar-width: none; /* Firefox */
-  }
-
-  input:focus ~ label,
-  input:not(:placeholder-shown) ~ label {
-    @apply -translate-y-2 text-xsmall-regular;
-  }
-
-  input:focus ~ label {
-    @apply left-0;
-  }
-
-  input:-webkit-autofill,
-  input:-webkit-autofill:hover,
-  input:-webkit-autofill:focus,
-  textarea:-webkit-autofill,
-  textarea:-webkit-autofill:hover,
-  textarea:-webkit-autofill:focus,
-  select:-webkit-autofill,
-  select:-webkit-autofill:hover,
-  select:-webkit-autofill:focus {
-    border: 1px solid #212121;
-    -webkit-text-fill-color: #212121;
-    -webkit-box-shadow: 0 0 0px 1000px #fff inset;
-    transition: background-color 5000s ease-in-out 0s;
-  }
-
-  input[type="search"]::-webkit-search-decoration,
-  input[type="search"]::-webkit-search-cancel-button,
-  input[type="search"]::-webkit-search-results-button,
-  input[type="search"]::-webkit-search-results-decoration {
-    -webkit-appearance: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
   }
 }
 
-@layer components {
-  .content-container {
-    @apply max-w-[1440px] w-full mx-auto px-8;
-  }
-
-  .contrast-btn {
-    @apply px-4 py-2 border border-black rounded-full hover:bg-black hover:text-white transition-colors duration-200 ease-in;
-  }
-
-  .text-xsmall-regular {
-    @apply text-[10px] leading-4 font-normal;
-  }
-
-  .text-small-regular {
-    @apply text-xs leading-5 font-normal;
-  }
-
-  .text-small-semi {
-    @apply text-xs leading-5 font-semibold;
-  }
-
-  .text-base-regular {
-    @apply text-sm leading-6 font-normal;
-  }
-
-  .text-base-semi {
-    @apply text-sm leading-6 font-semibold;
-  }
-
-  .text-large-regular {
-    @apply text-base leading-6 font-normal;
-  }
-
-  .text-large-semi {
-    @apply text-base leading-6 font-semibold;
-  }
-
-  .text-xl-regular {
-    @apply text-2xl leading-[36px] font-normal;
-  }
-
-  .text-xl-semi {
-    @apply text-2xl leading-[36px] font-semibold;
-  }
-
-  .text-2xl-regular {
-    @apply text-[30px] leading-[48px] font-normal;
-  }
-
-  .text-2xl-semi {
-    @apply text-[30px] leading-[48px] font-semibold;
-  }
-
-  .text-3xl-regular {
-    @apply text-[36px] leading-[48px] font-normal;
-  }
-
-  .text-3xl-semi {
-    @apply text-[36px] leading-[48px] font-semibold;
-  }
-}
-
-.hero__colour__overlay {
-  background: linear-gradient(
-    to top,
-    rgba(46, 131, 87, 0.2),
-    rgba(46, 131, 87, 1)
-  );
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+/* Stop Chrome and Safari painting autofilled fields yellow. The border is
+   left alone so the sand and error borders still show. */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #1f2a24;
+  -webkit-box-shadow: 0 0 0 1000px #fff inset;
+  transition: background-color 5000s ease-in-out 0s;
 }
