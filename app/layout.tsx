@@ -5,10 +5,31 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 import Navbar from "../components/Navbar";
 import type { Metadata } from "next";
-import { Inter, Mulish, Poppins, Patua_One } from "next/font/google";
+import {
+  Inter,
+  Mulish,
+  Poppins,
+  Patua_One,
+  Fraunces,
+  Figtree,
+} from "next/font/google";
 import Footer from "@/components/Footer";
 import CookieBanner from "@/components/CookieBanner";
 
+// Redesign fonts: Fraunces for display, Figtree for body and UI.
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  axes: ["opsz"],
+  display: "swap",
+  variable: "--font-display",
+});
+const figtree = Figtree({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-body",
+});
+
+// Legacy fonts: remove in phase 7 once no component uses them.
 const inter = Inter({ subsets: ["latin"] });
 const mulish = Mulish({
   weight: ["300", "400", "500", "600", "700"],
@@ -105,11 +126,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" style={{ scrollBehavior: "smooth" }}>
+    <html lang="en">
       <GoogleAnalytics GA_MEASUREMENT_ID="G-KSTFZWW3Y6" />
 
       <body
-        className={`${mulish.variable}  ${poppins.variable} ${patua.variable}`}
+        className={`${fraunces.variable} ${figtree.variable} ${mulish.variable} ${poppins.variable} ${patua.variable}`}
       >
         <script
           type="application/ld+json"

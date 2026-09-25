@@ -2,7 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ---- Redesign base styles (redesign/HANDOVER.md section 2) ---- */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-linen font-body text-ink-900 antialiased;
+  }
+
+  /* Visible keyboard focus ring on every interactive element. */
+  :focus-visible {
+    outline: 2px solid #2e8357;
+    outline-offset: 2px;
+  }
+
+  /* Anchor jumps land below the header, not under it. */
+  [id] {
+    scroll-margin-top: 24px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* react-toastify theme. Set on body (where the font variables live) so these
+   override the library's :root defaults for everything inside the page. */
+body {
+  --toastify-font-family: var(--font-body), system-ui, sans-serif;
+  --toastify-color-light: #fffdf8;
+  --toastify-text-color-light: #1f2a24;
+  --toastify-color-success: #1e4a38;
+  --toastify-color-error: #b42318;
+  --toastify-icon-color-success: #1e4a38;
+  --toastify-icon-color-error: #b42318;
+  --toastify-color-progress-success: #1e4a38;
+  --toastify-color-progress-error: #b42318;
+  --toastify-color-progress-light: #2e8357;
+}
+
+.Toastify .Toastify__toast {
+  border: 1px solid #e6dfcf;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px -12px rgba(22, 55, 42, 0.28);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
 @layer utilities {
+  /* ---- Legacy utilities below: review in phase 7 ---- */
   /* Chrome, Safari and Opera */
   .no-scrollbar::-webkit-scrollbar {
     display: none;
