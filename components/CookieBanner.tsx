@@ -2,6 +2,7 @@
 
 import { getLocalStorage, setLocalStorage } from "@/lib/storageHelper";
 import { useState, useEffect } from "react";
+import Button from "@/components/ui/Button";
 
 declare global {
   interface Window {
@@ -31,30 +32,25 @@ export default function CookieBanner() {
   }, [cookieConsent]);
   return (
     <div
+      role="region"
+      aria-label="Cookie consent"
       className={`${
         cookieConsent != null ? "hidden" : "flex"
-      } my-10 z-30 mx-auto max-w-max md:max-w-screen-sm fixed bottom-0 left-0 right-0 flex px-3 md:px-4 py-3 justify-between items-center flex-col sm:flex-row gap-4  bg-gray-700 rounded-lg shadow`}
+      } fixed inset-x-4 bottom-[calc(96px+env(safe-area-inset-bottom))] z-50 flex-col gap-3 rounded-2xl border border-sand-200 bg-paper p-4 text-[15px] leading-[1.5] text-ink-900 shadow-soft sm:flex-row sm:items-center sm:justify-between lg:inset-x-auto lg:bottom-6 lg:left-6 lg:max-w-[420px] lg:p-5`}
     >
-      <div className="text-center text-white">
-        <p className="mb-0">
-          This website uses{" "}
-          <span className="font-bold text-white">cookies</span>.
-        </p>
-      </div>
+      <p>We use cookies to understand how people use our site.</p>
 
-      <div className="flex gap-2">
-        <button
-          className="px-5 py-2 text-gray-300 rounded-md border-gray-900"
+      <div className="flex shrink-0 items-center gap-2">
+        <Button
+          variant="text"
+          size="sm"
           onClick={() => setCookieConsent(false)}
         >
           Decline
-        </button>
-        <button
-          className="bg-gray-900 px-5 py-2 text-white rounded-lg"
-          onClick={() => setCookieConsent(true)}
-        >
-          Allow Cookies
-        </button>
+        </Button>
+        <Button size="sm" onClick={() => setCookieConsent(true)}>
+          Accept
+        </Button>
       </div>
     </div>
   );

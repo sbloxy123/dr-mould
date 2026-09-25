@@ -7,7 +7,7 @@ import FeatureTopic from "@/components/FeatureTopic";
 
 export default function Home() {
   return (
-    <main className="">
+    <div>
       <Hero />
       <ActionBoxes />
       <section className="pt-10">
@@ -18,6 +18,6 @@ export default function Home() {
       </section>
       <Contact />
       <FAQ />
-    </main>
+    </div>
   );
 }
