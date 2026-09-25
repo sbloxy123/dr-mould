@@ -6,7 +6,7 @@ import HowItWorks from "@/components/home/HowItWorks";
 import RecentWork from "@/components/home/RecentWork";
 import Reviews from "@/components/home/Reviews";
 import QuotePanel from "@/components/home/QuotePanel";
-import FaqSection from "@/components/home/FaqSection";
+import FaqSection from "@/components/FaqSection";
 
 export default function Home() {
   return (

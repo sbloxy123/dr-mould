@@ -25,14 +25,22 @@ export function Eyebrow({
   );
 }
 
+const headingSizes = {
+  default: "text-[32px] lg:text-[46px]",
+  compact: "text-[30px] lg:text-[46px]",
+  article: "text-[30px] lg:text-[40px]",
+};
+
 type SectionHeadingProps = {
   eyebrow?: string;
   title: ReactNode;
   intro?: ReactNode;
   align?: "left" | "center";
   tone?: Tone;
-  // "compact" uses the 30px mobile H2 from the Mould advice page.
-  size?: "default" | "compact";
+  // default: 32px mobile / 46px desktop.
+  // compact: 30px mobile / 46px desktop (Mould advice section headings).
+  // article: 30px mobile / 40px desktop (Mould advice article headings).
+  size?: "default" | "compact" | "article";
   as?: "h1" | "h2";
   id?: string;
   className?: string;
@@ -62,10 +70,8 @@ export default function SectionHeading({
       <Heading
         id={id}
         className={cn(
-          "font-display font-medium lg:text-[46px] lg:leading-[1.1]",
-          size === "compact"
-            ? "text-[30px] leading-[1.12]"
-            : "text-[32px] leading-[1.12]",
+          "font-display font-medium leading-[1.12] lg:leading-[1.1]",
+          headingSizes[size],
           dark ? "text-paper" : "text-forest-900"
         )}
       >

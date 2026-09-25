@@ -1,60 +1,46 @@
-import React from "react";
-import { mouldRemoval, infoWithPoints, reduceMould } from "@/data/information";
-import InfoCard from "@/components/InfoCard";
-import FAQ from "@/components/FAQ";
-import InfoWithPoints from "@/components/InfoWithPoints";
-import FeatureTopic from "@/components/FeatureTopic";
-const page = () => {
+import PageIntro from "@/components/PageIntro";
+import CtaBand from "@/components/CtaBand";
+import FaqSection from "@/components/FaqSection";
+import Container from "@/components/ui/Container";
+import AdviceAside from "@/components/advice/AdviceAside";
+import JumpChips from "@/components/advice/JumpChips";
+import Causes from "@/components/advice/Causes";
+import ProfessionalHelp from "@/components/advice/ProfessionalHelp";
+import Removal from "@/components/advice/Removal";
+import Tips from "@/components/advice/Tips";
+import {
+  adviceCtaBand,
+  adviceFaqIntro,
+  adviceIntro,
+} from "@/data/information";
+
+export default function MouldAdvicePage() {
   return (
-    <div>
-      <div className="pt-10">
-        {infoWithPoints.map((topic) => {
-          const { title, intro, factors, conclusion } = topic;
-          return (
-            <InfoWithPoints
-              key={title}
-              title={title}
-              intro={intro}
-              factors={factors}
-              conclusion={conclusion}
-            />
-          );
-        })}
-      </div>
-      {/* ==== MOULD REMOVAL ==== */}
-      <div className="md:pt-10" id="mould-removal-section">
-        {mouldRemoval.map((topic) => {
-          const { title, content } = topic;
-          return <FeatureTopic key={title} title={title} content={content} />;
-        })}
-      </div>
-      <div className="w-[80%] mb-20 m-auto border-b-2 border-theme_indigo-900"></div>
-      {/* ==== REDUCE MOULD GROWTH ==== */}
-      <article className="content-container sm:px-[6rem]">
-        <h2 className="text-xl pb-16 font-patua capitalize">
-          {reduceMould.title}
-        </h2>
-        <div className="flex flex-wrap w-fit justify-center lg:grid-cols-2 lg:grid gap-[1.4rem]">
-          {reduceMould.factors.map((option) => {
-            return (
-              <InfoCard
-                key={option.point}
-                title={option.point}
-                text={option.instruction}
-                image={option.image}
-              />
-            );
-          })}
-        </div>
-      </article>
+    <>
+      <PageIntro
+        title={adviceIntro.title}
+        lead={adviceIntro.lead}
+        leadShort={adviceIntro.leadShort}
+        crumb="Mould advice"
+      />
 
-      <div className="w-[80%] mt-20 m-auto border-b-2 border-theme_indigo-900"></div>
-      {/* ===== FAQ ===== */}
-      <section>
-        <FAQ />
+      <section className="pb-14 lg:pb-[104px] lg:pt-[88px]">
+        <Container className="lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start lg:gap-24">
+          <AdviceAside />
+          <div>
+            <JumpChips />
+            <div className="flex max-w-[800px] flex-col gap-14 pt-12 lg:gap-24 lg:pt-0">
+              <Causes />
+              <ProfessionalHelp />
+              <Removal />
+            </div>
+          </div>
+        </Container>
       </section>
-    </div>
-  );
-};
 
-export default page;
+      <Tips />
+      <FaqSection intro={adviceFaqIntro} headingSize="compact" />
+      <CtaBand title={adviceCtaBand.title} body={adviceCtaBand.body} />
+    </>
+  );
+}

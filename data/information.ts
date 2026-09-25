@@ -1,168 +1,249 @@
-export const mouldRemoval = [
-  {
-    title: "Mould Removal",
-    content: [
-      "Our specialised services encompass comprehensive toxic mould removal, targeting various harmful types, including black mould (stachybotrys), among others.",
-      "Mould growth arises from factors like water leaks, flooding, poor ventilation, insufficient insulation, high humidity, plumbing issues, and substandard building techniques.",
-      "Exposure to mould in the UK poses health risks such as respiratory infections, allergies, headaches, fatigue, and sore throats, making mould contamination a serious health hazard. Unaddressed, these health impacts can render buildings uninhabitable, necessitating costly remediation.",
-      "Mould can remain hidden, lurking behind walls, under floors, and in roof spaces, only becoming apparent through surface penetration or visible discolouration patches.",
-      "Explore information on common mould types, removal costs, and effective prevention methods here.",
-    ],
-  },
+// Copy for the Mould advice page (/information) and the shared FAQ.
+// Where the mobile design uses shorter wording, it's in a `...Short` field.
+
+export const adviceIntro = {
+  title: "Mould advice",
+  lead: "Straightforward guidance on what causes mould, when it’s time to call in a professional, and simple ways to keep your home mould-free.",
+  leadShort:
+    "What causes mould, when to call in a professional, and simple ways to keep your home mould-free.",
+};
+
+// "On this page" links (desktop aside) and jump chips (mobile).
+export const adviceSections = [
+  { id: "causes", label: "What causes mould", chip: "Causes" },
+  { id: "professional", label: "When to call a professional", chip: "When to call us" },
+  { id: "removal", label: "About mould removal", chip: "Removal" },
+  { id: "tips", label: "Reducing mould at home", chip: "Prevention tips" },
+  { id: "faq", label: "FAQs", chip: "FAQs" },
 ];
 
-export const infoWithPoints = [
-  {
-    title: "what causes mould",
-    intro:
-      "Mould is caused by the presence of excess moisture in an environment, combined with suitable organic materials for the mould to feed on. The main factors that cause mould growth include:",
-    factors: [
-      {
-        point: "High Humidity",
-        reason:
-          "Areas with high humidity levels provide the ideal conditions for mould to thrive",
-      },
-      {
-        point: "Water Leaks",
-        reason:
-          "Leaking pipes, roofs, or walls introduce moisture, creating a conducive environment for mould to grow",
-      },
-      {
-        point: "Poor Ventilation",
-        reason:
-          "Lack of proper airflow prevents moisture from dissipating, promoting mould growth",
-      },
-      {
-        point: "Condensation",
-        reason:
-          "When warm air comes into contact with cooler surfaces, condensation occurs, leading to moisture buildup",
-      },
-      {
-        point: "Organic Materials",
-        reason:
-          "Mould feeds on organic substances like wood, paper, fabric, and food debris, using them as a food source",
-      },
-      {
-        point: "Time",
-        reason:
-          "Given the right conditions, mould can start growing within 24 to 48 hours, spreading rapidly if not addressed promptly",
-      },
-    ],
-    conclusion:
-      "By addressing these underlying causes, it's possible to prevent or reduce mould growth in homes and other spaces.",
-  },
-  {
-    title: "when to use a professional",
-    intro:
-      "Someone should consider using a professional for mould treatment in the following situations:",
-    factors: [
-      {
-        point: "Extensive Mould Growth",
-        reason:
-          "If the mould covers a large area or has spread to multiple rooms, a professional can efficiently handle the extensive remediation process",
-      },
-      {
-        point: "Health Concerns",
-        reason:
-          "If occupants experience health issues related to mould exposure, such as allergies or respiratory problems, a professional can safely remove the mould to improve indoor air quality",
-      },
-      {
-        point: "Hidden Mould",
-        reason:
-          "If mould is suspected but not visible, a professional can conduct a thorough inspection using specialised equipment to locate hidden mould behind walls, under floors, or in ceilings",
-      },
-      {
-        point: "Chronic Mould Problems",
-        reason:
-          "If mould keeps reoccurring despite DIY attempts, a professional can identify and address the root cause of the mould issue to prevent future outbreaks",
-      },
-      {
-        point: "Structural Damage",
-        reason:
-          "If mould growth has caused damage to building materials or compromised the integrity of the property, a professional can assess and repair the affected areas",
-      },
-      {
-        point: "Lack of Expertise",
-        reason:
-          "Dealing with mould requires proper knowledge, skills, and equipment. If you are unsure of how to handle mould safely and effectively, it's best to hire a professional",
-      },
-      {
-        point: "Time and Convenience",
-        reason:
-          "Professionals can complete the mould removal process efficiently, saving you time and effort compared to DIY methods",
-      },
-    ],
-    conclusion:
-      "By hiring a qualified mould remediation professional, you can ensure that the mould issue is dealt with effectively and safely, providing a healthier living environment for you and your family.",
-  },
-];
+export const adviceAsideCta = {
+  title: "Not sure what you’re dealing with?",
+  body: "Send us a couple of photos and we’ll give you a free, no-obligation quote.",
+};
 
-export const reduceMould = {
-  title: "Reducing mould growth, dampness and moisture in your home",
-  factors: [
-    {
-      point: "Control humidity",
-      instruction:
-        "Use dehumidifiers in damp areas and keep indoor humidity levels between 30% to 50%. This reduces the moisture mould needs to grow",
-      image: "/reduce-mould/dehumidifier.png",
-    },
-    {
-      point: "Proper ventilation",
-      instruction:
-        "Use exhaust fans while cooking and showering to quickly remove excess moisture from the air, reducing the chances of mould forming",
-      image: "/reduce-mould/vent.png",
-    },
-    {
-      point: "Fix leaks promptly",
-      instruction:
-        "Repair any water leaks in pipes, roofs, or walls immediately to prevent water accumulation and potential mould growth",
-      image: "/reduce-mould/leak.png",
-    },
-    {
-      point: "Insulate properly",
-      instruction:
-        "Properly insulate walls, windows, and pipes to prevent condensation, which can contribute to mould growth",
-      image: "/reduce-mould/insulation.png",
-    },
-    {
-      point: "Regular cleaning",
-      instruction:
-        "Clean and dry areas prone to moisture, such as bathrooms, kitchens, and basements, regularly to prevent mould spores from settling",
-      image: "/reduce-mould/clean.png",
-    },
-    {
-      point: "Monitor indoor plants",
-      instruction:
-        "Overwatering indoor plants can create excess moisture, so be mindful of their watering needs",
-      image: "/reduce-mould/plants.png",
-    },
-    {
-      point: "Inspect loft and basement spaces",
-      instruction:
-        "Ensure loft and basement spaces are adequately ventilated and free from leaks or moisture issues. Regularly inspect these areas for any signs of mould",
-      image: "/reduce-mould/basement.png",
-    },
-    {
-      point: "Avoid drying washing indoors",
-      instruction:
-        "When renovating or building, consider using mould-resistant paint, drywall, and other materials",
-      image: "/reduce-mould/clothes.png",
-    },
-    {
-      point: "Regular Maintenance",
-      instruction:
-        "Regularly check and maintain the seals around doors, windows, and other openings to prevent moisture infiltration.",
-      image: "/reduce-mould/window.jpg",
-    },
+export type CauseItem = { title: string; body: string; bodyShort?: string };
 
+export const causes = {
+  eyebrow: "The basics",
+  title: "What causes mould",
+  intro:
+    "Mould needs two things: excess moisture, and something organic to feed on. The main causes are:",
+  items: [
     {
-      point: "Winter Furniture Placement",
-      instruction:
-        "During colder months, move furniture slightly away from external walls. This prevents condensation and cold spots, reducing the likelihood of mould forming behind furniture due to trapped moisture and restricted airflow",
-      image: "/reduce-mould/gap.jpg",
+      title: "High humidity",
+      body: "Humid rooms give mould ideal conditions to thrive.",
+    },
+    {
+      title: "Water leaks",
+      body: "Leaking pipes, roofs or walls bring in the moisture mould needs.",
+    },
+    {
+      title: "Poor ventilation",
+      body: "Without airflow, moisture can’t escape and builds up.",
+    },
+    {
+      title: "Condensation",
+      body: "Warm air meeting cold surfaces leaves moisture behind.",
+    },
+    {
+      title: "Organic materials",
+      body: "Wood, paper, fabric and even dust act as a food source.",
+    },
+    {
+      title: "Time",
+      body: "In the right conditions mould can start within 24–48 hours and spread quickly.",
+      bodyShort: "In the right conditions mould can start within 24–48 hours.",
+    },
+  ] as CauseItem[],
+  // Desktop only.
+  conclusion:
+    "Deal with the underlying cause and you can prevent, or greatly reduce, mould growth.",
+};
+
+// Each item renders as "<strong>{lead}</strong> {body}" on desktop and
+// "<strong>{leadShort}</strong>{bodyShort}" on mobile. `bodyShort` includes
+// its own leading space or comma.
+export type ProfessionalItem = {
+  lead: string;
+  body: string;
+  leadShort: string;
+  bodyShort: string;
+};
+
+export const professionalHelp = {
+  eyebrow: "Getting help",
+  title: "When to call a professional",
+  // Desktop only.
+  intro:
+    "Small patches can often be handled yourself. It’s worth getting help if:",
+  items: [
+    {
+      lead: "It’s spread widely.",
+      body: "Mould covering a large area or several rooms needs a thorough, organised clean-up.",
+      leadShort: "It’s spread widely",
+      bodyShort: " across a large area or several rooms.",
+    },
+    {
+      lead: "It’s affecting your health.",
+      body: "If anyone at home has allergies or breathing problems, safe removal matters.",
+      leadShort: "It’s affecting your health",
+      bodyShort: ", such as allergies or breathing problems.",
+    },
+    {
+      lead: "You suspect hidden mould.",
+      body: "A musty smell but nothing visible can mean mould behind walls, under floors or in ceilings.",
+      leadShort: "You suspect hidden mould",
+      bodyShort: " behind walls, under floors or in ceilings.",
+    },
+    {
+      lead: "It keeps coming back.",
+      body: "Recurring mould usually means the root cause hasn’t been found yet.",
+      leadShort: "It keeps coming back",
+      bodyShort: ", so the root cause hasn’t been found.",
+    },
+    {
+      lead: "It’s damaged the building.",
+      body: "Mould can harm plaster, wood and other materials that may need repair.",
+      leadShort: "It’s damaged the building",
+      bodyShort: ", like plaster or woodwork.",
+    },
+    {
+      lead: "You’re not sure how to tackle it safely.",
+      body: "The right equipment and know-how make a real difference.",
+      leadShort: "You’re not sure how",
+      bodyShort: " to tackle it safely.",
+    },
+    {
+      lead: "You’d rather save the time.",
+      body: "We’ll handle the whole job quickly and properly.",
+      leadShort: "You’d rather save the time",
+      bodyShort: " and have it done properly.",
+    },
+  ] as ProfessionalItem[],
+};
+
+export const mouldRemoval = {
+  eyebrow: "What we do",
+  title: "About mould removal",
+  paragraphs: [
+    {
+      text: "We remove harmful mould of all kinds, including black mould (Stachybotrys). It usually comes from leaks, flooding, poor ventilation, weak insulation, high humidity, plumbing problems or poor building techniques.",
+      textShort:
+        "We remove harmful mould of all kinds, including black mould (Stachybotrys). It usually comes from leaks, flooding, poor ventilation, weak insulation, high humidity or plumbing problems.",
+    },
+    {
+      text: "Mould isn’t always obvious. It can hide behind walls, under floors and in roof spaces, and often only shows once it breaks through the surface or leaves a stain.",
+      textShort:
+        "Mould can hide behind walls, under floors and in roof spaces, and often only shows once it breaks through the surface.",
     },
   ],
+  healthNote: {
+    title: "Why it matters for your health",
+    body: "Mould exposure is linked to breathing problems, allergies, headaches, tiredness and sore throats. Left alone, it can make rooms unpleasant to live in and more costly to put right.",
+    bodyShort:
+      "Mould exposure is linked to breathing problems, allergies, headaches, tiredness and sore throats.",
+  },
+  // Mobile only, after the health note.
+  mobileCta: "Send us a photo for a free quote",
 };
+
+export type TipItem = {
+  title: string;
+  body: string;
+  bodyShort: string;
+  image: string;
+  alt: string;
+};
+
+export const reduceMould = {
+  eyebrow: "Prevention",
+  title: "10 ways to reduce mould at home",
+  intro:
+    "A family of four can release 7–15 litres of water a day just from cooking, showering and breathing. These habits help keep it in check.",
+  introShort:
+    "A family of four can release 7–15 litres of water a day from cooking, showering and breathing.",
+  items: [
+    {
+      title: "Control humidity",
+      body: "Use a dehumidifier in damp rooms and keep humidity between 30% and 50%.",
+      bodyShort: "Use a dehumidifier and keep humidity between 30% and 50%.",
+      image: "/reduce-mould/dehumidifier.png",
+      alt: "Dehumidifier in a room",
+    },
+    {
+      title: "Ventilate",
+      body: "Run extractor fans while cooking and showering to clear moist air fast.",
+      bodyShort: "Run extractor fans while cooking and showering.",
+      image: "/reduce-mould/vent.png",
+      alt: "Extractor fan vent",
+    },
+    {
+      title: "Fix leaks promptly",
+      body: "Repair leaking pipes, roofs and walls before water can build up.",
+      bodyShort: "Repair pipes, roofs and walls before water builds up.",
+      image: "/reduce-mould/leak.png",
+      alt: "Water-stained ceiling from a leak",
+    },
+    {
+      title: "Insulate properly",
+      body: "Insulated walls, windows and pipes mean less condensation.",
+      bodyShort: "Insulated walls, windows and pipes mean less condensation.",
+      image: "/reduce-mould/insulation.png",
+      alt: "Cross-section of an insulated wall",
+    },
+    {
+      title: "Clean regularly",
+      body: "Keep bathrooms and kitchens clean and dry so spores can’t settle.",
+      bodyShort: "Keep bathrooms and kitchens clean and dry.",
+      image: "/reduce-mould/clean.png",
+      alt: "Wiping a surface with a cloth",
+    },
+    {
+      title: "Mind your houseplants",
+      body: "Overwatering plants adds more moisture to the air than you’d think.",
+      bodyShort: "Overwatering adds more moisture than you’d think.",
+      image: "/reduce-mould/plants.png",
+      alt: "Watering indoor plants",
+    },
+    {
+      title: "Check lofts & basements",
+      body: "Make sure they’re ventilated and leak-free, and check them now and then.",
+      bodyShort: "Keep them ventilated, leak-free and checked now and then.",
+      image: "/reduce-mould/basement.png",
+      alt: "Loft space",
+    },
+    {
+      title: "Dry washing outside",
+      body: "Where you can’t, use a vented dryer or dehumidifier and open a window.",
+      bodyShort: "Or use a vented dryer or dehumidifier and open a window.",
+      image: "/reduce-mould/clothes.png",
+      alt: "Clothes drying indoors",
+    },
+    {
+      title: "Maintain seals",
+      body: "Check seals around doors and windows to keep moisture out.",
+      bodyShort: "Check seals around doors and windows.",
+      image: "/reduce-mould/window.jpg",
+      alt: "Window frame and seal",
+    },
+    {
+      title: "Leave a gap",
+      body: "In winter, pull furniture slightly off outside walls so air can circulate.",
+      bodyShort: "In winter, pull furniture slightly off outside walls.",
+      image: "/reduce-mould/gap.jpg",
+      alt: "Gap between furniture and wall",
+    },
+  ] as TipItem[],
+};
+
+export const adviceCtaBand = {
+  title: "Still worried about mould?",
+  body: "Send us a few photos for a free, no-obligation quote.",
+};
+
+export const adviceFaqIntro =
+  "Can’t see yours? Give us a ring and we’ll happily help.";
 
 export type FaqItem = {
   id: number;
