@@ -10,11 +10,11 @@ npm run build    # Production build
 npm run lint     # ESLint check (next/core-web-vitals)
 ```
 
-No test suite is configured. Requires Node >= 20.
+No test suite is configured. Node is pinned to `24.x` in `package.json` so Vercel and local builds match.
 
 ## Environment Variables
 
-Required in `.env.local`:
+Required in `.env.local`, and enabled for both Production and Preview in Vercel:
 
 ```
 GOOGLE_EMAIL=           # Gmail address for sending contact form emails
@@ -28,25 +28,45 @@ CLOUDINARY_API_SECRET=
 
 ## Architecture
 
-Next.js 13 App Router site for Dr Mould, a UK mould treatment service based in Hertfordshire. `@/*` maps to the repo root.
+Next.js 13.4 App Router site for Dr Mould, a mould removal business based in Hare Street, Buntingford, serving Hertfordshire, Essex and Cambridgeshire. `@/*` maps to the repo root. The 2026 redesign brief (spec, reference renders, screenshots) lives in `redesign/`.
 
-**Pages:** `/` (home), `/contact`, `/gallery`, `/information`. Pages are server components that map over typed arrays from `data/` and render components. Any new page must also be added to the hardcoded list in `app/sitemap.ts`.
+**Pages:** `/` (home), `/information` (labelled "Mould advice"), `/gallery` (labelled "Our work"), `/contact`, plus `app/not-found.tsx`. The URLs predate the redesign and must not change. `/information` keeps an `id="mould-removal-section"` anchor because old links point to it. Any new page must also be added to the hardcoded list in `app/sitemap.ts`.
+
+**Layout** (`app/layout.tsx`): skip link, `TopBar` (desktop only), `Header` (client; CSS-transition mobile menu), `<main id="main">`, `Footer`, `MobileCallBar` (below `lg`; a single call button on `/contact`), `CookieBanner`. Also holds the fonts, default metadata and the Schema.org `HomeAndConstructionBusiness` JSON-LD.
+
+**Components:**
+- `components/ui/`: primitives. `Container` (1200px column), `Button` (variants `primary`, `outline`, `on-dark`, `outline-on-dark`, `text`; renders `Link`, `<a>` or `<button>`), `SectionHeading` and `Eyebrow`, `Reveal` (one-time fade-and-rise; don't wrap above-the-fold content, it starts hidden until hydrated).
+- `components/layout/`: the site shell above.
+- `components/home/`, `components/advice/`, `components/gallery/`, `components/contact/`: sections for each page.
+- Shared at the top level: `PageIntro` (breadcrumb, H1, lead), `CtaBand`, `FaqSection` and `FaqList` (native `<details>`), `ProofBar`, `BeforeAfterPair` (static pair), `ImageSlider` (the draggable, keyboard-accessible before/after slider), `Form` (the quote form), `CookieBanner`, `GoogleAnalytics`, `Email`.
+
+**Content:** page copy lives in typed data files, not in components. Where the mobile design uses shorter wording, it's stored alongside in a `...Short` field and swapped with `lg:hidden` / `hidden lg:inline`.
+- `data/site.ts`: phone, email, hours, areas, base, nav links, and `aboutImage` (set it to a `/public` path to switch the home About section to its two-column photo layout).
+- `data/home.ts`, `data/services.ts`, `data/steps.ts`: home page copy.
+- `data/reviews.ts`: customer reviews. The home Reviews section only renders when this list is non-empty.
+- `data/information.ts`: Mould advice page copy, and the shared `faq` list.
+- `data/before-after.ts`: gallery entries (images under `public/before-after-square/`, `category`, optional `town`, alt text). The home hero and Recent work pick entries by slug.
+- `data/gallery.ts`, `data/contact.ts`: Our work and Contact page copy.
 
 **Contact form flow:**
-1. `components/Form.tsx` — client component with Formik + Zod validation (`utils/validations.tsx`; only name, email and message are validated). Images are chosen with a plain `<input type="file">` and uploaded from the browser directly to Cloudinary's REST upload endpoint using the unsigned `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET` (folder `contact_form_uploads`, max 5 images). The returned `secure_url`s are held in local state, not in Formik values.
-2. On submit, POSTs JSON to `/api/contact` (`app/api/contact/route.tsx`) with form values + image URLs.
+1. `components/Form.tsx` is a client component with Formik + Zod validation (`utils/validations.tsx`; only name, email and message are validated). A `variant` prop picks `compact` (home quote panel) or `full` (contact page). Images are uploaded from the browser directly to Cloudinary's REST upload endpoint using the unsigned `NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET` (folder `contact_form_uploads`, max 5 images). The returned `secure_url`s are held in local state, not in Formik values.
+2. On submit, it POSTs JSON to `/api/contact` (`app/api/contact/route.tsx`) with the form values and image URLs. The field names `name`, `email`, `phone`, `address` and `message` are relied on by the route and the email template.
 3. The route renders `components/Email.tsx` (react-email) and sends it via nodemailer over Gmail SMTP (`utils/nodemailer.tsx`). From and to are both `GOOGLE_EMAIL`. Send errors are only logged; the route always returns 200, so the client shows a success toast even if the email failed.
 
-**Dead code to be aware of:** `app/api/cloudinary-signature.ts` is a Pages Router (`NextApiRequest`) handler sitting inside the App Router tree, so it is never routed. It and `utils/cloudinary.ts` are the only consumers of the server-side `CLOUDINARY_*` vars. `@formspree/react` is installed but unused.
+**Dead code to be aware of:** `app/api/cloudinary-signature.ts` is a Pages Router (`NextApiRequest`) handler sitting inside the App Router tree, so it is never routed. It and `utils/cloudinary.ts` are the only consumers of the server-side `CLOUDINARY_*` vars.
 
-**Static content:** All page copy lives in typed arrays — `data/information.ts` (information page sections + FAQ), `data/feature-content.ts` (home page feature blocks), `data/before-after.ts` (gallery before/after image pairs under `public/before-after-square/`). Edit here to change site text or gallery entries.
+**Styling:** Tailwind 3.3 with the design tokens in `tailwind.config.js`: `forest`, `leaf`, `sage`, `linen` (page background), `paper` (cards), `sand` (borders), `ink` (text), `gold`, `amber` (health note), `mist` (text on dark green), `danger`, plus `shadow-hero`, `shadow-handle`, `shadow-callbar`, `shadow-soft` and `max-w-content`. Breakpoints are Tailwind's defaults: `md` for two-column grids, `lg` for the desktop header and layouts. `app/globals.css` sets the base styles, the focus ring, reduced-motion handling and the react-toastify theme. `utils/cn.ts` joins class names.
 
-**Styling:** Tailwind with custom theme colours (`theme_indigo`, `theme_gold`, `theme_light_green`, `theme_dark_green`, `theme_white`, each with `900` solid and `300` translucent shades) and a custom breakpoint scale (`2xsmall` 320px → `2xlarge` 1920px) alongside the defaults. Material Tailwind wraps the Tailwind config via `withMT`; its components are re-exported through the `"use client"` barrel `utils/material-tailwind-exports.ts` so server components can import them — add new Material Tailwind components there rather than importing the package directly. Framer Motion is used for entrance animations. Two plain CSS files (`css/`) style the navbar and secondary button.
+**Fonts:** Fraunces (display) and Figtree (body) via `next/font/google` in `app/layout.tsx`, exposed as `--font-display` / `--font-body` and the `font-display` / `font-body` utilities.
 
-**Fonts:** Mulish, Poppins, and Patua One loaded via `next/font/google` in `app/layout.tsx` and exposed as CSS variables (`font-mulish`, `font-poppins`, `font-patua` utilities).
+**Icons:** `lucide-react`, pinned to exactly `0.577.0`. Version 1.x breaks server components on Next 13.4 (`react.createContext is not a function`), so don't upgrade it while on Next 13.
 
-**Analytics and consent:** `components/GoogleAnalytics.jsx` (measurement ID `G-KSTFZWW3Y6`) loads gtag with `analytics_storage` defaulted to denied. `components/CookieBanner.tsx` stores the choice in localStorage under `cookie_consent` (via `lib/storageHelper.js`, which is `client-only`) and updates gtag consent.
+**Analytics and consent:** `components/GoogleAnalytics.jsx` (measurement ID `G-KSTFZWW3Y6`) loads gtag with `analytics_storage` defaulted to denied. Its page-view tracker reads `useSearchParams`, so it sits in its own `Suspense` boundary; without that every page falls back to client-only rendering. It must render before `CookieBanner`, which stores the choice in localStorage under `cookie_consent` (via `lib/storageHelper.js`, which is `client-only`) and updates gtag consent.
 
-**SEO:** Site metadata, `metadataBase` (`https://www.dr-mould.co.uk`) and a Schema.org `HomeAndConstructionBusiness` JSON-LD block (address, phone, hours) are inlined in `app/layout.tsx`. Open Graph / Twitter images live in `app/`.
+**SEO:** each page exports `metadata` built with `pageMetadata()` from `utils/metadata.ts` (title, description, its own canonical URL and Open Graph tags). `metadataBase` (`https://www.dr-mould.co.uk`) and the JSON-LD are in `app/layout.tsx`. Open Graph / Twitter images live in `app/`; the logo is `public/logo.svg` (and `logo.png` for JSON-LD), and `app/apple-icon.png` is the touch icon.
 
-**Deployment:** Vercel (`.vercel/project.json` present).
+## Gotchas
+
+- Keep inputs at 16px text or larger, or iOS zooms in on focus.
+
+**Deployment:** Vercel (`.vercel/project.json` present). Every pushed branch gets a Preview deployment; `master` deploys to dr-mould.co.uk.

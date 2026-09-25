@@ -1,4 +1,5 @@
 import PageIntro from "@/components/PageIntro";
+import { pageMetadata } from "@/utils/metadata";
 import CtaBand from "@/components/CtaBand";
 import FaqSection from "@/components/FaqSection";
 import Container from "@/components/ui/Container";
@@ -13,6 +14,14 @@ import {
   adviceFaqIntro,
   adviceIntro,
 } from "@/data/information";
+
+export const metadata = pageMetadata({
+  title:
+    "Mould Advice: Causes, Prevention & When to Call a Professional | Dr Mould",
+  description:
+    "Straightforward guidance on what causes mould, when it’s time to call in a professional, and simple ways to keep your home mould-free.",
+  path: "/information",
+});
 
 export default function MouldAdvicePage() {
   return (

@@ -1,4 +1,5 @@
 import QuoteForm from "@/components/Form";
+import { pageMetadata } from "@/utils/metadata";
 import PageIntro from "@/components/PageIntro";
 import Container from "@/components/ui/Container";
 import AreasCard from "@/components/contact/AreasCard";
@@ -6,6 +7,13 @@ import NextSteps from "@/components/contact/NextSteps";
 import QuickContact from "@/components/contact/QuickContact";
 import TalkCard from "@/components/contact/TalkCard";
 import { contactIntro, formTitle } from "@/data/contact";
+
+export const metadata = pageMetadata({
+  title: "Get a Free Mould Removal Quote | Dr Mould",
+  description:
+    "Tell us about your mould problem and add a few photos for a free, no-obligation quote. We cover Hertfordshire, Essex and Cambridgeshire.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

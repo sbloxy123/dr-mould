@@ -4,14 +4,7 @@ import { LocalBusiness, WithContext } from "schema-dts";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 import type { Metadata } from "next";
-import {
-  Inter,
-  Mulish,
-  Poppins,
-  Patua_One,
-  Fraunces,
-  Figtree,
-} from "next/font/google";
+import { Fraunces, Figtree } from "next/font/google";
 import TopBar from "@/components/layout/TopBar";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -32,36 +25,17 @@ const figtree = Figtree({
   variable: "--font-body",
 });
 
-// Legacy fonts: remove in phase 7 once no component uses them.
-const inter = Inter({ subsets: ["latin"] });
-const mulish = Mulish({
-  weight: ["300", "400", "500", "600", "700"],
-  subsets: ["latin"],
-  variable: "--font-mulish",
-});
-const poppins = Poppins({
-  weight: ["200", "300", "400", "500", "600", "700", "800"],
-  subsets: ["latin"],
-  variable: "--font-poppins",
-});
-const patua = Patua_One({
-  weight: ["400"],
-  subsets: ["latin"],
-  variable: "--font-patua",
-});
 export const metadata: Metadata = {
-  title: "Dr Mould | Effective Mould Solutions for Healthier Homes",
+  // Defaults for pages without their own metadata (e.g. the 404 page).
+  // Each page sets its own title, description and canonical URL.
+  title: "Dr Mould | Mould Removal & Treatment in Hertfordshire, Essex & Cambridgeshire",
   description:
-    "Proven mould removal and prevention treatments that create mould-free living spaces, promoting a healthier and comfortable home environment",
-  metadataBase: new URL("https://www.dr-mould.co.uk"),
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-gb": "/en-gb",
-    },
-  },
-
+    "We safely remove mould, treat the affected areas and help you tackle what’s causing it, across Hertfordshire, Essex and Cambridgeshire.",
+  metadataBase: new URL(site.url),
   openGraph: {
+    siteName: site.name,
+    locale: "en_GB",
+    type: "website",
     images: "/opengraph-image.png",
   },
   // viewport-fit=cover lets the mobile call bar pad for the iPhone home bar.
@@ -137,7 +111,7 @@ export default function RootLayout({
   return (
     <html lang="en-GB">
       <body
-        className={`${fraunces.variable} ${figtree.variable} ${mulish.variable} ${poppins.variable} ${patua.variable}`}
+        className={`${fraunces.variable} ${figtree.variable}`}
       >
         {/* Keep analytics before CookieBanner: gtag must exist before the
             banner applies the stored consent. */}
