@@ -164,7 +164,15 @@ export const reduceMould = {
   ],
 };
 
-export const faq = [
+export type FaqItem = {
+  id: number;
+  question: string;
+  answer: string[];
+  // Optional closing sentence with a link, rendered as "{prefix} {label}."
+  link?: { prefix: string; label: string; href: string };
+};
+
+export const faq: FaqItem[] = [
   {
     id: 1,
     question: "Do I have black mould in my home?",
@@ -175,36 +183,39 @@ export const faq = [
   },
   {
     id: 2,
-    question: "How do I prevent mould from returning?",
+    question: "How do I stop mould coming back?",
     answer: [
       "Preventing mould formation in a home involves taking proactive measures to control moisture and create an environment that is less conducive to mould growth.",
 
       "Key advice to prevent mould formation includes reducing humidity (efficient bathroom & kitchen extractor fans), improving ventilation (open windows), adding insulation to external-side walls and fixing any leaks.",
 
-      "To put things into perspective, an average family of four can release around 7 to 15 liters of water per day through activities such as cooking, showers, breathing, and perspiration with cooking and showering being the main contributors to indoor moisture",
-
-      "Please check out our “Information Page” for more information.",
+      "To put things into perspective, an average family of four can release around 7 to 15 litres of water per day through activities such as cooking, showers, breathing, and perspiration, with cooking and showering being the main contributors to indoor moisture.",
     ],
+    link: {
+      prefix: "For practical advice, see our",
+      label: "10 ways to reduce mould at home",
+      href: "/information#tips",
+    },
   },
   {
     id: 3,
-    question: "What does your professional mould treatment plan consist of?",
+    question: "What happens on the day of treatment?",
     answer: [
       "For the safety and well-being of our customers, it's recommended to vacate the premises during the mould treatment process. Leaving windows open and ensuring proper ventilation for at least one hour helps disperse any residual fumes or particles. As part of our commitment to safety, we wear full Personal Protective Equipment (PPE), including ventilation masks, while working with our products to ensure a secure and healthy environment for everyone involved.",
     ],
   },
   {
     id: 4,
-    question: "How long does the mould treatment take?",
+    question: "How long does it take?",
     answer: [
       "The time frame varies depending on the extent of the mould infestation. We aim to complete the treatment as efficiently as possible without compromising quality.",
     ],
   },
   {
     id: 5,
-    question: "What areas do you serve?",
+    question: "What areas do you cover?",
     answer: [
-      "We cover Hertfordshire, Cambridgeshire, Essex, and London as our primary service areas. However, we are willing to travel further for the right jobs. Your satisfaction is our priority, and we aim to accommodate your needs to the best of our ability.",
+      "We cover Hertfordshire, Cambridgeshire and Essex as our primary service areas. However, we are willing to travel further for the right jobs. Your satisfaction is our priority, and we aim to accommodate your needs to the best of our ability.",
     ],
   },
 ];

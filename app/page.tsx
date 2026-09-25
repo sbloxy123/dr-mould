@@ -1,23 +1,25 @@
-import Hero from "@/components/Hero";
-import ActionBoxes from "@/components/ActionBoxes";
-import { mouldRemoval } from "@/data/information";
-import Contact from "@/components/Contact";
-import FAQ from "@/components/FAQ";
-import FeatureTopic from "@/components/FeatureTopic";
+import Hero from "@/components/home/Hero";
+import ProofBar from "@/components/ProofBar";
+import About from "@/components/home/About";
+import Services from "@/components/home/Services";
+import HowItWorks from "@/components/home/HowItWorks";
+import RecentWork from "@/components/home/RecentWork";
+import Reviews from "@/components/home/Reviews";
+import QuotePanel from "@/components/home/QuotePanel";
+import FaqSection from "@/components/home/FaqSection";
 
 export default function Home() {
   return (
-    <div>
+    <>
       <Hero />
-      <ActionBoxes />
-      <section className="pt-10">
-        {mouldRemoval.map((topic) => {
-          const { title, content } = topic;
-          return <FeatureTopic key={title} title={title} content={content} />;
-        })}
-      </section>
-      <Contact />
-      <FAQ />
-    </div>
+      <ProofBar />
+      <About />
+      <Services />
+      <HowItWorks />
+      <RecentWork />
+      <Reviews />
+      <QuotePanel />
+      <FaqSection />
+    </>
   );
 }

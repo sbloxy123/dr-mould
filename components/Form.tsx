@@ -1,9 +1,12 @@
 "use client";
-import React, { useState, useRef } from "react";
+import React, { useId, useState, useRef } from "react";
 import { validationSchema } from "@/utils/validations";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { toFormikValidationSchema } from "zod-formik-adapter";
 import { ToastContainer, toast } from "react-toastify";
+import { Camera, Upload, X } from "lucide-react";
+import { site } from "@/data/site";
+import { cn } from "@/utils/cn";
 
 type FormValues = {
   name: string;
@@ -14,18 +17,43 @@ type FormValues = {
   images: string[];
 };
 
-const ContactForm = () => {
+type Variant = "compact" | "full";
+
+type QuoteFormProps = {
+  // "compact" is the home page panel (48px inputs, one-line photo zone).
+  // "full" is the contact page (52px inputs, hint text, tall drop zone).
+  variant?: Variant;
+};
+
+const MAX_IMAGES = 5;
+
+// Shared input styling. 16px text stops iOS zooming in on focus.
+const inputBase =
+  "w-full rounded-xl border bg-white px-3.5 text-base text-ink-900 outline-none transition-colors placeholder:text-ink-500/70 focus:border-leaf-600 focus-visible:outline-leaf-600 lg:px-4";
+
+function inputClasses(variant: Variant, hasError: boolean) {
+  return cn(
+    inputBase,
+    variant === "compact" ? "h-12" : "h-[50px] lg:h-[52px]",
+    hasError ? "border-danger" : "border-sand-400"
+  );
+}
+
+const ContactForm = ({ variant = "full" }: QuoteFormProps) => {
   const [isLoading, setIsLoading] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const idPrefix = useId();
+  const compact = variant === "compact";
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
     if (!files.length) return;
 
-    if (uploadedImages.length + files.length > 5) {
-      toast.error("Maximum 5 images allowed.");
+    if (uploadedImages.length + files.length > MAX_IMAGES) {
+      toast.error(`You can add up to ${MAX_IMAGES} photos.`);
+      if (fileInputRef.current) fileInputRef.current.value = "";
       return;
     }
 
@@ -52,12 +80,20 @@ const ContactForm = () => {
       );
       setUploadedImages((prev) => [...prev, ...urls]);
     } catch {
-      toast.error("Failed to upload image. Please try again.");
+      toast.error("Sorry, we couldn't upload that photo. Please try again.");
     } finally {
       setIsUploading(false);
       if (fileInputRef.current) fileInputRef.current.value = "";
     }
   };
+
+  const fieldId = (name: keyof FormValues) => `${idPrefix}-${name}`;
+  const labelClass = cn(
+    "flex flex-col font-semibold text-ink-900",
+    compact ? "gap-1.5 text-sm" : "gap-1.5 text-[15px] lg:gap-2"
+  );
+  const errorClass = "text-sm text-danger";
+  const photoLimitReached = uploadedImages.length >= MAX_IMAGES;
 
   return (
     <>
@@ -93,11 +129,13 @@ const ContactForm = () => {
 
             resetForm();
             setUploadedImages([]);
-            toast.success("Form submitted successfully!");
+            toast.success(
+              "Thanks! Your enquiry has been sent. We'll be in touch soon."
+            );
           } catch (error) {
             console.error("Error submitting form:", error);
             toast.error(
-              "Oops.. something went wrong! If the issue persists, please email us directly 🙂"
+              `Sorry, something went wrong. Please try again, or call us on ${site.phoneDisplay}.`
             );
           } finally {
             setSubmitting(false);
@@ -105,172 +143,234 @@ const ContactForm = () => {
           }
         }}
       >
-        {({ isSubmitting }) => (
-          <Form>
-            <div className="">
-              <div className={`flex flex-wrap -m-2 ${isLoading ? "opacity-60 pointer-events-none" : ""}`}>
-                {/* Name Field */}
-                <div className="p-2 w-1/2">
-                  <div className="relative">
-                    <label className="leading-7 text-sm text-gray-700">
-                      Name
-                    </label>
-                    <Field
-                      type="text"
-                      id="name"
-                      name="name"
-                      className="w-full bg-gray-100 bg-opacity-80 rounded-sm border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
-                    <ErrorMessage
-                      name="name"
-                      component="div"
-                      className="text-red-500"
-                    />
-                  </div>
-                </div>
+        {({ errors, touched }) => {
+          const hasError = (name: keyof FormValues) =>
+            Boolean(errors[name] && touched[name]);
 
-                {/* Email Field */}
-                <div className="p-2 w-1/2">
-                  <div className="relative">
-                    <label className="leading-7 text-sm text-gray-700">
-                      Email
-                    </label>
-                    <Field
-                      type="email"
-                      id="email"
-                      name="email"
-                      className="w-full bg-gray-100 bg-opacity-80 rounded-sm border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
-                    <ErrorMessage
-                      name="email"
-                      component="div"
-                      className="text-red-500"
-                    />
-                  </div>
-                </div>
+          return (
+            <Form noValidate>
+              <div
+                className={cn(
+                  "grid grid-cols-1 md:grid-cols-2",
+                  compact ? "gap-3.5 lg:gap-[18px]" : "gap-4 lg:gap-x-5 lg:gap-y-[22px]",
+                  isLoading && "pointer-events-none opacity-60"
+                )}
+              >
+                <label htmlFor={fieldId("name")} className={labelClass}>
+                  Your name
+                  <Field
+                    type="text"
+                    id={fieldId("name")}
+                    name="name"
+                    autoComplete="name"
+                    aria-invalid={hasError("name") || undefined}
+                    className={inputClasses(variant, hasError("name"))}
+                  />
+                  <ErrorMessage name="name" component="span" className={errorClass} />
+                </label>
 
-                {/* Phone Field */}
-                <div className="p-2 w-1/2">
-                  <div className="relative">
-                    <label className="leading-7 text-sm text-gray-700">
-                      Phone Number
-                    </label>
-                    <Field
-                      type="phone"
-                      id="phone"
-                      name="phone"
-                      className="w-full bg-gray-100 bg-opacity-80 rounded-sm border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
-                    <ErrorMessage
-                      name="phone"
-                      component="div"
-                      className="text-red-500"
-                    />
-                  </div>
-                </div>
+                <label htmlFor={fieldId("phone")} className={labelClass}>
+                  Phone number
+                  <Field
+                    type="tel"
+                    id={fieldId("phone")}
+                    name="phone"
+                    autoComplete="tel"
+                    aria-invalid={hasError("phone") || undefined}
+                    className={inputClasses(variant, hasError("phone"))}
+                  />
+                  <ErrorMessage name="phone" component="span" className={errorClass} />
+                </label>
 
-                {/* Address Field */}
-                <div className="p-2 w-1/2">
-                  <div className="relative">
-                    <label className="leading-7 text-sm text-gray-700">
-                      Location
-                    </label>
-                    <Field
-                      type="text"
-                      id="address"
-                      name="address"
-                      className="w-full bg-gray-100 bg-opacity-80 rounded-sm border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
-                    <ErrorMessage
-                      name="address"
-                      component="div"
-                      className="text-red-500"
-                    />
-                  </div>
-                </div>
+                <label htmlFor={fieldId("email")} className={labelClass}>
+                  Email
+                  <Field
+                    type="email"
+                    id={fieldId("email")}
+                    name="email"
+                    autoComplete="email"
+                    aria-invalid={hasError("email") || undefined}
+                    className={inputClasses(variant, hasError("email"))}
+                  />
+                  <ErrorMessage name="email" component="span" className={errorClass} />
+                </label>
 
-                {/* Message Field */}
-                <div className="p-2 w-full">
-                  <div className="relative">
-                    <label className="leading-7 text-sm text-gray-700">
-                      Message
-                    </label>
-                    <Field
-                      id="message"
-                      name="message"
-                      as="textarea"
-                      className="w-full bg-gray-100 bg-opacity-80 rounded-sm border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                    />
-                    <ErrorMessage
-                      name="message"
-                      component="div"
-                      className="text-red-500"
-                    />
-                  </div>
-                </div>
+                <label htmlFor={fieldId("address")} className={labelClass}>
+                  Town or postcode
+                  <Field
+                    type="text"
+                    id={fieldId("address")}
+                    name="address"
+                    autoComplete="postal-code"
+                    aria-invalid={hasError("address") || undefined}
+                    className={inputClasses(variant, hasError("address"))}
+                  />
+                  <ErrorMessage name="address" component="span" className={errorClass} />
+                </label>
 
-                {/* Image Upload */}
-                <div className="p-2 w-full">
+                <label
+                  htmlFor={fieldId("message")}
+                  className={cn(labelClass, "md:col-span-2")}
+                >
+                  Where&rsquo;s the mould, and how long has it been there?
+                  <Field
+                    id={fieldId("message")}
+                    name="message"
+                    as="textarea"
+                    rows={compact ? 4 : 5}
+                    aria-invalid={hasError("message") || undefined}
+                    className={cn(
+                      inputBase,
+                      "resize-none py-3 leading-[1.5] lg:py-3.5",
+                      hasError("message") ? "border-danger" : "border-sand-400"
+                    )}
+                  />
+                  {!compact && (
+                    <span className="text-sm font-normal text-ink-500">
+                      For example: black spots on the bathroom ceiling, getting
+                      worse over the last few months.
+                    </span>
+                  )}
+                  <ErrorMessage name="message" component="span" className={errorClass} />
+                </label>
+
+                {/* Photos */}
+                <div className="flex flex-col gap-2 md:col-span-2 lg:gap-2.5">
+                  {!compact && (
+                    <span className="text-[15px] font-semibold text-ink-900">
+                      Photos{" "}
+                      <span className="font-normal text-ink-500">
+                        (optional, up to {MAX_IMAGES})
+                      </span>
+                    </span>
+                  )}
                   <input
                     ref={fileInputRef}
                     type="file"
                     accept="image/jpeg,image/png,image/gif"
                     multiple
-                    className="hidden"
+                    className="sr-only"
+                    tabIndex={-1}
+                    aria-hidden
                     onChange={handleFileChange}
                   />
                   <button
                     type="button"
-                    disabled={isUploading || uploadedImages.length >= 5}
+                    disabled={isUploading || photoLimitReached}
+                    aria-busy={isUploading || undefined}
                     onClick={() => fileInputRef.current?.click()}
-                    className="mt-2 bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
+                    className={cn(
+                      "flex w-full flex-col items-center justify-center gap-1 border-[1.5px] border-dashed border-[#9FB5A7] bg-sage-50 font-semibold text-forest-700 transition-colors hover:border-leaf-600 hover:bg-sage-100 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:border-[#9FB5A7] disabled:hover:bg-sage-50",
+                      compact
+                        ? "h-[60px] rounded-xl lg:h-16"
+                        : "h-[88px] rounded-[14px] lg:h-[104px] lg:gap-1.5"
+                    )}
                   >
-                    {isUploading ? "Uploading..." : "Upload Images"}
+                    {isUploading ? (
+                      <span className="flex items-center gap-2.5 text-base">
+                        <Spinner />
+                        Uploading…
+                      </span>
+                    ) : compact ? (
+                      <span className="flex items-center gap-2.5 text-base">
+                        <Upload size={20} strokeWidth={2} aria-hidden />
+                        {photoLimitReached
+                          ? `${MAX_IMAGES} photos added`
+                          : "Add photos (optional)"}
+                      </span>
+                    ) : (
+                      <>
+                        <span className="flex items-center gap-2 text-base lg:gap-2.5">
+                          <Camera
+                            size={20}
+                            strokeWidth={2}
+                            aria-hidden
+                            className="lg:hidden"
+                          />
+                          <Upload
+                            size={22}
+                            strokeWidth={2}
+                            aria-hidden
+                            className="hidden lg:block"
+                          />
+                          {photoLimitReached ? (
+                            `${MAX_IMAGES} photos added`
+                          ) : (
+                            <>
+                              <span className="lg:hidden">Take or add photos</span>
+                              <span className="hidden lg:inline">Add photos</span>
+                            </>
+                          )}
+                        </span>
+                        <span className="text-[13px] font-normal text-ink-500 lg:text-sm">
+                          <span className="lg:hidden">
+                            Helps us give an accurate quote
+                          </span>
+                          <span className="hidden lg:inline">
+                            JPG or PNG. Photos help us give you an accurate quote.
+                          </span>
+                        </span>
+                      </>
+                    )}
                   </button>
-                  <div className="mt-2 flex flex-wrap">
-                    {uploadedImages.map((url, index) => (
-                      <div key={index} className="relative">
-                        <img
-                          src={url}
-                          alt={`Upload ${index + 1}`}
-                          className="w-20 h-20 object-cover mr-2 mb-2 rounded"
-                        />
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setUploadedImages((prev) =>
-                              prev.filter((_, i) => i !== index)
-                            )
-                          }
-                          className="absolute top-0 right-0 bg-red-500 text-white rounded-full w-5 h-5 flex items-center justify-center"
-                        >
-                          &times;
-                        </button>
-                      </div>
-                    ))}
-                  </div>
+
+                  {uploadedImages.length > 0 && (
+                    <ul className="flex flex-wrap gap-2.5 pt-1" aria-label="Uploaded photos">
+                      {uploadedImages.map((url, index) => (
+                        <li key={url} className="relative h-[72px] w-[72px]">
+                          {/* eslint-disable-next-line @next/next/no-img-element */}
+                          <img
+                            src={url}
+                            alt={`Uploaded photo ${index + 1}`}
+                            className="h-[72px] w-[72px] rounded-[10px] object-cover"
+                          />
+                          <button
+                            type="button"
+                            aria-label={`Remove photo ${index + 1}`}
+                            onClick={() =>
+                              setUploadedImages((prev) =>
+                                prev.filter((_, i) => i !== index)
+                              )
+                            }
+                            className="absolute -right-2 -top-2 flex h-[26px] w-[26px] items-center justify-center rounded-full border-2 border-paper bg-ink-900 text-paper transition-colors hover:bg-danger"
+                          >
+                            <X size={12} strokeWidth={3} aria-hidden />
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
 
-                {/* Submit Button */}
-                <div className="p-2 w-full">
-                  <button
-                    type="submit"
-                    disabled={isLoading}
-                    className="text-theme_indigo-900 w-full bg-theme_gold-900 border-0 py-2 px-8 focus:outline-none ease-in-out duration-300 hover:bg-theme_light_green-900 rounded-sm text-lg disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-                  >
-                    {isLoading && (
-                      <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                      </svg>
-                    )}
-                    {isLoading ? "Sending..." : "Submit"}
-                  </button>
-                </div>
+                {/* Submit */}
+                <button
+                  type="submit"
+                  disabled={isLoading || isUploading}
+                  className={cn(
+                    "flex w-full items-center justify-center gap-2.5 rounded-full bg-forest-700 font-semibold text-paper transition-colors hover:bg-forest-900 disabled:cursor-not-allowed disabled:opacity-70 md:col-span-2",
+                    compact
+                      ? "h-[54px] text-[17px] lg:h-14"
+                      : "h-14 text-[17px] lg:mt-1.5 lg:h-[60px] lg:text-lg"
+                  )}
+                >
+                  {isLoading && <Spinner />}
+                  {isLoading ? "Sending…" : "Send my enquiry"}
+                </button>
+
+                <p
+                  className={cn(
+                    "text-center text-[13px] leading-[1.5] text-ink-500 md:col-span-2",
+                    !compact && "lg:text-sm lg:leading-[1.55]"
+                  )}
+                >
+                  We&rsquo;ll only use your details to reply to your enquiry.
+                  {!compact &&
+                    " Your data is handled in line with UK data protection law."}
+                </p>
               </div>
-            </div>
-          </Form>
-        )}
+            </Form>
+          );
+        }}
       </Formik>
 
       <ToastContainer
@@ -280,14 +380,39 @@ const ContactForm = () => {
         newestOnTop={false}
         closeOnClick
         rtl={false}
-        className="h-4"
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
+        theme="light"
       />
     </>
   );
 };
+
+function Spinner() {
+  return (
+    <svg
+      className="h-5 w-5 animate-spin"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      aria-hidden
+    >
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
+        strokeWidth="4"
+      />
+      <path
+        className="opacity-75"
+        fill="currentColor"
+        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+      />
+    </svg>
+  );
+}
 
 export default ContactForm;
