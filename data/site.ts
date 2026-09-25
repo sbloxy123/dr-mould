@@ -14,9 +14,6 @@ export const site = {
   areas: ["Hertfordshire", "Essex", "Cambridgeshire"],
   base: "Hare Street, Buntingford",
   established: 2024,
-  // Set to e.g. "/about.jpg" when a photo is ready. The home page About
-  // section switches from one text column to the two-column layout.
-  aboutImage: null as string | null,
   designCredit: { label: "Bloxie", href: "https://www.bloxie.co.uk/" },
 };
 

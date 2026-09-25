@@ -10,9 +10,12 @@ export default function RecentWork() {
   const items = recentWork.items.map(getBeforeAfter);
 
   return (
-    <section id="work" className="bg-forest-900 py-14 text-linen lg:py-28">
+    <section data-slot="recent-work" id="work" className="bg-forest-900 py-14 text-linen lg:py-28">
       <Container className="flex flex-col gap-6 lg:gap-12">
-        <Reveal className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <Reveal
+          data-slot="recent-work-header"
+          className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between"
+        >
           <SectionHeading
             eyebrow={recentWork.eyebrow}
             title={recentWork.title}
@@ -27,10 +30,10 @@ export default function RecentWork() {
           </Button>
         </Reveal>
 
-        <div className="grid gap-6 lg:grid-cols-3 lg:gap-7">
+        <div data-slot="recent-work-grid" className="grid gap-6 lg:grid-cols-3 lg:gap-7">
           {items.map((item, index) => (
             <Reveal key={item.slug} delay={index * 0.08}>
-              <figure className="flex flex-col gap-2.5 lg:gap-3.5">
+              <figure data-slot="recent-work-item" className="flex flex-col gap-2.5 lg:gap-3.5">
                 <BeforeAfterPair
                   before={item.beforeImage}
                   after={item.afterImage}

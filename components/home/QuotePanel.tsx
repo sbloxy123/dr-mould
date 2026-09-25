@@ -11,10 +11,17 @@ const iconCircle =
 // rounded panel inside the container on desktop.
 export default function QuotePanel() {
   return (
-    <section id="quote" className="bg-forest-700 lg:bg-transparent">
-      <Container>
-        <div className="grid gap-5 py-12 text-linen lg:grid-cols-2 lg:items-center lg:gap-16 lg:rounded-[28px] lg:bg-forest-700 lg:p-[72px]">
-          <div className="flex flex-col gap-5 lg:gap-[22px]">
+    <section
+      data-slot="quote-panel"
+      id="quote"
+      className="bg-forest-700 lg:bg-transparent"
+    >
+      <Container className="lg:pt-28">
+        <div
+          data-slot="quote-panel-card"
+          className="grid gap-5 py-12 text-linen lg:grid-cols-2 lg:items-center lg:gap-16 lg:rounded-[28px] lg:bg-forest-700 lg:p-[72px]"
+        >
+          <div data-slot="quote-panel-details" className="flex flex-col gap-5 lg:gap-[22px]">
             <h2 className="font-display text-[32px] font-medium leading-[1.12] text-paper lg:text-[46px] lg:leading-[1.1]">
               {quotePanel.title}
             </h2>
@@ -55,7 +62,7 @@ export default function QuotePanel() {
             </ul>
           </div>
 
-          <div className="rounded-[18px] bg-paper p-[22px] text-ink-900 lg:rounded-[20px] lg:p-9">
+          <div data-slot="quote-panel-form" className="rounded-[18px] bg-paper p-[22px] text-ink-900 lg:rounded-[20px] lg:p-9">
             <QuoteForm variant="compact" />
           </div>
         </div>

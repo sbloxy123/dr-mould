@@ -10,14 +10,17 @@ export default function Reveal({
   children,
   className,
   delay = 0,
+  "data-slot": slot = "reveal",
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
+  "data-slot"?: string;
 }) {
   return (
     <MotionConfig reducedMotion="user">
       <motion.div
+        data-slot={slot}
         className={className}
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}

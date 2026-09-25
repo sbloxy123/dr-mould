@@ -1,41 +1,31 @@
-import Image from "next/image";
+import BeforeAfterSlider from "@/components/ImageSlider";
 import Container from "@/components/ui/Container";
 import Reveal from "@/components/ui/Reveal";
 import SectionHeading from "@/components/ui/SectionHeading";
+import { getBeforeAfter } from "@/data/before-after";
 import { about } from "@/data/home";
-import { site } from "@/data/site";
-import { cn } from "@/utils/cn";
 
-// Text-only until `site.aboutImage` is set, then image left and text right.
+// Before/after slider left and text right on desktop; slider first on mobile.
 export default function About() {
-  const image = site.aboutImage;
+  const featured = getBeforeAfter(about.featuredWork);
 
   return (
-    <section className="py-14 lg:pb-28 lg:pt-[120px]">
-      <Container
-        className={cn(
-          "grid gap-5",
-          image ? "lg:grid-cols-2 lg:items-center lg:gap-20" : undefined
-        )}
-      >
-        {image && (
-          <Reveal>
-            <div className="relative h-60 overflow-hidden rounded-[18px] lg:h-[480px] lg:rounded-3xl">
-              <Image
-                src={image}
-                alt={about.imageAlt}
-                fill
-                sizes="(min-width: 1024px) 560px, 100vw"
-                className="object-cover"
-              />
-            </div>
-          </Reveal>
-        )}
+    <section data-slot="about" className="py-14 lg:pb-28 lg:pt-[120px]">
+      <Container className="grid gap-5 lg:grid-cols-2 lg:items-center lg:gap-20">
+        {/* Capped on tablets so the square slider doesn't fill the screen. */}
+        <Reveal data-slot="about-media" className="md:max-w-[560px]">
+          <BeforeAfterSlider
+            title={featured.title}
+            before={featured.beforeImage}
+            after={featured.afterImage}
+            beforeAlt={featured.beforeAlt}
+            afterAlt={featured.afterAlt}
+            sizes="(min-width: 768px) 560px, 100vw"
+          />
+        </Reveal>
         <Reveal
-          className={cn(
-            "flex flex-col gap-5 lg:gap-[22px]",
-            !image && "max-w-[760px]"
-          )}
+          data-slot="about-content"
+          className="flex flex-col gap-5 lg:gap-[22px]"
         >
           <SectionHeading eyebrow={about.eyebrow} title={about.title} />
           {about.paragraphs.map((paragraph, index) => (

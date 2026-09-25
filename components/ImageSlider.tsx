@@ -86,6 +86,7 @@ export default function BeforeAfterSlider({
 
   return (
     <div
+      data-slot="before-after-slider"
       className={cn(
         "relative aspect-square w-full cursor-ew-resize touch-pan-y select-none overflow-hidden rounded-2xl bg-sand-200 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-leaf-600 lg:rounded-[18px]",
         className
@@ -110,6 +111,7 @@ export default function BeforeAfterSlider({
       />
 
       <div
+        data-slot="before-after-slider-before"
         className="absolute inset-0"
         style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
@@ -126,6 +128,7 @@ export default function BeforeAfterSlider({
 
       {/* Divider line and handle. Purely visual: the range input is the control. */}
       <div
+        data-slot="before-after-slider-handle"
         aria-hidden
         className="pointer-events-none absolute inset-y-0 w-[3px] -translate-x-1/2 bg-paper"
         style={{ left: `${sliderPosition}%` }}
@@ -143,6 +146,7 @@ export default function BeforeAfterSlider({
       </span>
 
       <input
+        data-slot="before-after-slider-input"
         type="range"
         min={0}
         max={100}

@@ -6,7 +6,7 @@ import { site } from "@/data/site";
 // card in the sidebar instead.
 export default function QuickContact() {
   return (
-    <div className="grid grid-cols-2 gap-2.5 pb-6 lg:hidden">
+    <div data-slot="quick-contact" className="grid grid-cols-2 gap-2.5 pb-6 lg:hidden">
       <a
         href={site.phoneHref}
         className="flex flex-col gap-2 rounded-2xl bg-forest-700 p-4 text-paper transition-colors hover:bg-forest-900"

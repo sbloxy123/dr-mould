@@ -33,12 +33,12 @@ export default function MouldAdvicePage() {
         crumb="Mould advice"
       />
 
-      <section className="pb-14 lg:pb-[104px] lg:pt-[88px]">
+      <section data-slot="advice-content" className="pb-14 lg:pb-[104px] lg:pt-[88px]">
         <Container className="lg:grid lg:grid-cols-[280px_minmax(0,1fr)] lg:items-start lg:gap-24">
           <AdviceAside />
           <div>
             <JumpChips />
-            <div className="flex max-w-[800px] flex-col gap-14 pt-12 lg:gap-24 lg:pt-0">
+            <div data-slot="advice-articles" className="flex max-w-[800px] flex-col gap-14 pt-12 lg:gap-24 lg:pt-0">
               <Causes />
               <ProfessionalHelp />
               <Removal />

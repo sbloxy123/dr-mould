@@ -12,7 +12,7 @@ export default function MobileCallBar() {
   const onContact = pathname === "/contact";
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-30 border-t border-sand-200 bg-paper px-4 pb-[calc(20px+env(safe-area-inset-bottom))] pt-3 shadow-callbar lg:hidden">
+    <div data-slot="mobile-call-bar" className="fixed inset-x-0 bottom-0 z-30 border-t border-sand-200 bg-paper px-4 pb-[calc(20px+env(safe-area-inset-bottom))] pt-3 shadow-callbar lg:hidden">
       {onContact ? (
         <Button href={site.phoneHref} variant="outline" fullWidth>
           <Phone size={18} strokeWidth={2} aria-hidden />

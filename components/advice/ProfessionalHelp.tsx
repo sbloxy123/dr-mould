@@ -6,7 +6,7 @@ import { professionalHelp } from "@/data/information";
 export default function ProfessionalHelp() {
   return (
     <Reveal>
-      <article id="professional" className="flex flex-col gap-4 lg:gap-[22px]">
+      <article data-slot="professional-help" id="professional" className="flex flex-col gap-4 lg:gap-[22px]">
         <SectionHeading
           eyebrow={professionalHelp.eyebrow}
           title={professionalHelp.title}
@@ -15,7 +15,7 @@ export default function ProfessionalHelp() {
         <p className="hidden text-lg leading-[1.7] text-ink-700 lg:block">
           {professionalHelp.intro}
         </p>
-        <ul className="flex flex-col border-t border-sand-300">
+        <ul data-slot="professional-help-list" className="flex flex-col border-t border-sand-300">
           {professionalHelp.items.map((item) => (
             <li
               key={item.lead}

@@ -45,13 +45,14 @@ const items: ProofItem[] = [
 // Four trust points in a card under the hero. 2x2 on mobile, one row on desktop.
 export default function ProofBar() {
   return (
-    <Container>
+    <Container data-slot="proof-bar">
       <section
+        data-slot="proof-bar-card"
         aria-label="Why choose Dr Mould"
         className="grid grid-cols-2 gap-x-3.5 gap-y-[18px] rounded-[18px] border border-sand-200 bg-paper p-5 lg:grid-cols-4 lg:gap-7 lg:rounded-[20px] lg:px-9 lg:py-[26px]"
       >
         {items.map(({ icon: Icon, title, titleShort, text, textShort }) => (
-          <div key={title} className="flex items-center gap-2.5 lg:gap-3.5">
+          <div key={title} data-slot="proof-bar-item" className="flex items-center gap-2.5 lg:gap-3.5">
             <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[10px] bg-sage-100 text-forest-700 lg:h-11 lg:w-11 lg:rounded-xl">
               <Icon
                 className="h-[18px] w-[18px] lg:h-[22px] lg:w-[22px]"

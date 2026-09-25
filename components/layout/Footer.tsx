@@ -15,10 +15,10 @@ const linkClass = "text-mist-200 transition-colors hover:text-paper hover:underl
 
 export default function Footer() {
   return (
-    <footer className="bg-forest-900 pb-[120px] pt-12 text-mist-200 lg:pb-10 lg:pt-20">
+    <footer data-slot="footer" className="bg-forest-900 pb-[120px] pt-12 text-mist-200 lg:pb-10 lg:pt-20">
       <Container className="flex flex-col gap-7 lg:gap-14">
         <div className="grid gap-7 lg:grid-cols-4 lg:gap-12">
-          <div className="flex flex-col gap-4 lg:col-span-2 lg:gap-[18px]">
+          <div data-slot="footer-brand" className="flex flex-col gap-4 lg:col-span-2 lg:gap-[18px]">
             <Link href="/" className="flex w-fit items-center gap-2.5 lg:gap-3">
               <span className="flex h-[46px] w-[46px] items-center justify-center rounded-full bg-paper lg:h-[52px] lg:w-[52px]">
                 <Image
@@ -41,7 +41,7 @@ export default function Footer() {
           </div>
 
           <div className="grid grid-cols-2 gap-6 lg:col-span-2 lg:gap-12">
-            <nav aria-label="Footer" className="flex flex-col gap-2.5 text-[15px] lg:gap-3 lg:text-base">
+            <nav data-slot="footer-nav" aria-label="Footer" className="flex flex-col gap-2.5 text-[15px] lg:gap-3 lg:text-base">
               <span className="font-semibold text-paper">Explore</span>
               {exploreLinks.map((link) => (
                 <Link key={link.href} href={link.href} className={linkClass}>
@@ -49,7 +49,7 @@ export default function Footer() {
                 </Link>
               ))}
             </nav>
-            <div className="flex flex-col gap-2.5 text-[15px] lg:gap-3 lg:text-base">
+            <div data-slot="footer-contact" className="flex flex-col gap-2.5 text-[15px] lg:gap-3 lg:text-base">
               <span className="font-semibold text-paper">Get in touch</span>
               <a href={site.phoneHref} className={linkClass}>
                 {site.phoneDisplay}
@@ -63,7 +63,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-1.5 border-t border-mist-200/20 pt-[18px] text-[13px] text-mist-300 lg:flex-row lg:justify-between lg:pt-6 lg:text-sm">
+        <div data-slot="footer-legal" className="flex flex-col gap-1.5 border-t border-mist-200/20 pt-[18px] text-[13px] text-mist-300 lg:flex-row lg:justify-between lg:pt-6 lg:text-sm">
           <span>
             © {new Date().getFullYear()} {site.name}. All rights reserved.
           </span>

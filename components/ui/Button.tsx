@@ -88,13 +88,13 @@ export default function Button(props: ButtonProps) {
     const { href, ...anchorRest } = rest as Omit<ButtonAsLink, keyof CommonProps>;
     if (href.startsWith("/")) {
       return (
-        <Link href={href} className={classes} {...anchorRest}>
+        <Link data-slot="button" href={href} className={classes} {...anchorRest}>
           {children}
         </Link>
       );
     }
     return (
-      <a href={href} className={classes} {...anchorRest}>
+      <a data-slot="button" href={href} className={classes} {...anchorRest}>
         {children}
       </a>
     );
@@ -105,7 +105,7 @@ export default function Button(props: ButtonProps) {
     keyof CommonProps
   >;
   return (
-    <button type={type} className={classes} {...buttonRest}>
+    <button data-slot="button" type={type} className={classes} {...buttonRest}>
       {children}
     </button>
   );

@@ -42,6 +42,7 @@ export default function BeforeAfterPair({
 
   return (
     <div
+      data-slot="before-after-pair"
       className={cn(
         "grid grid-cols-2",
         large ? "gap-1.5 lg:gap-2.5" : "gap-1.5",
@@ -49,6 +50,7 @@ export default function BeforeAfterPair({
       )}
     >
       <div
+        data-slot="before-after-pair-before"
         className={cn(
           "relative overflow-hidden",
           heightClassName,
@@ -72,6 +74,7 @@ export default function BeforeAfterPair({
         </span>
       </div>
       <div
+        data-slot="before-after-pair-after"
         className={cn(
           "relative overflow-hidden",
           heightClassName,

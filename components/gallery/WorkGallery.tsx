@@ -44,11 +44,12 @@ export default function WorkGallery() {
       : beforeAfter.filter((item) => item.category === filter);
 
   return (
-    <section className="pb-12 pt-5 lg:pb-28 lg:pt-12">
+    <section data-slot="work-gallery" className="pb-12 pt-5 lg:pb-28 lg:pt-12">
       <Container className="flex flex-col gap-7 lg:gap-9">
         {/* Filter toolbar */}
-        <div className="flex flex-col gap-3 lg:flex-row lg:flex-wrap lg:items-center lg:justify-between lg:gap-8 lg:border-b lg:border-sand-rule lg:pb-7">
+        <div data-slot="work-gallery-toolbar" className="flex flex-col gap-3 lg:flex-row lg:flex-wrap lg:items-center lg:justify-between lg:gap-8 lg:border-b lg:border-sand-rule lg:pb-7">
           <div
+            data-slot="work-gallery-filters"
             role="group"
             aria-label={ourWork.filterLabel}
             className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 py-1 md:-mx-8 md:px-8 lg:mx-0 lg:inline-flex lg:w-auto lg:gap-1 lg:overflow-visible lg:rounded-full lg:border lg:border-sand-rule lg:bg-paper lg:p-[5px]"
@@ -58,6 +59,7 @@ export default function WorkGallery() {
               return (
                 <button
                   key={value}
+                  data-slot="work-gallery-filter"
                   type="button"
                   aria-pressed={active}
                   onClick={() => setFilter(value)}
@@ -82,7 +84,7 @@ export default function WorkGallery() {
             })}
           </div>
 
-          <p className="flex items-center gap-2 text-sm text-ink-500 lg:gap-2.5 lg:text-[15px]">
+          <p data-slot="work-gallery-hint" className="flex items-center gap-2 text-sm text-ink-500 lg:gap-2.5 lg:text-[15px]">
             <span
               aria-hidden
               className="flex text-forest-700 lg:h-8 lg:w-8 lg:items-center lg:justify-center lg:rounded-full lg:border lg:border-sand-rule lg:bg-paper"
@@ -98,9 +100,9 @@ export default function WorkGallery() {
         </p>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10">
+        <div data-slot="work-gallery-grid" className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-x-8 lg:gap-y-10">
           {items.map((item, index) => (
-            <figure key={item.slug} className="flex flex-col gap-2.5 lg:gap-3.5">
+            <figure key={item.slug} data-slot="work-gallery-item" className="flex flex-col gap-2.5 lg:gap-3.5">
               <BeforeAfterSlider
                 title={item.title}
                 before={item.beforeImage}
@@ -124,6 +126,7 @@ export default function WorkGallery() {
 
           {/* CTA tile: fills the rest of the last row on desktop */}
           <aside
+            data-slot="work-gallery-cta"
             className={cn(
               "mt-4 flex flex-col gap-3.5 rounded-[22px] bg-forest-700 px-5 py-7 md:col-span-2 lg:mt-0 lg:min-h-[379px] lg:justify-between lg:gap-7 lg:rounded-[18px] lg:p-10",
               ctaSpan[spanFor(items.length)]

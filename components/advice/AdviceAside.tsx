@@ -38,8 +38,9 @@ export default function AdviceAside() {
   }, []);
 
   return (
-    <aside className="hidden lg:sticky lg:top-8 lg:flex lg:flex-col lg:gap-7">
+    <aside data-slot="advice-aside" className="hidden lg:sticky lg:top-8 lg:flex lg:flex-col lg:gap-7">
       <nav
+        data-slot="advice-aside-nav"
         aria-label="On this page"
         className="flex flex-col gap-1 border-l-2 border-sand-300"
       >
@@ -67,7 +68,7 @@ export default function AdviceAside() {
         })}
       </nav>
 
-      <div className="flex flex-col gap-3.5 rounded-[20px] bg-forest-700 p-7">
+      <div data-slot="advice-aside-cta" className="flex flex-col gap-3.5 rounded-[20px] bg-forest-700 p-7">
         <p className="font-display text-[22px] leading-[1.25] text-paper">
           {adviceAsideCta.title}
         </p>

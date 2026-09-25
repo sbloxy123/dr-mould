@@ -29,6 +29,7 @@ export default function PageIntro({
 }: PageIntroProps) {
   return (
     <section
+      data-slot="page-intro"
       className={cn(
         variant === "band"
           ? "border-b border-sand-200 bg-paper pb-8 pt-7 lg:pb-[72px] lg:pt-16"
@@ -37,7 +38,7 @@ export default function PageIntro({
       )}
     >
       <Container className="flex flex-col gap-3.5 lg:gap-[18px]">
-        <nav aria-label="Breadcrumb">
+        <nav data-slot="page-intro-breadcrumb" aria-label="Breadcrumb">
           <ol className="flex gap-1.5 text-[13px] text-ink-500 lg:gap-2 lg:text-sm">
             <li>
               <Link
@@ -54,6 +55,7 @@ export default function PageIntro({
           </ol>
         </nav>
         <h1
+          data-slot="page-intro-title"
           className={cn(
             "font-display font-medium tracking-[-0.015em] text-forest-900 lg:text-[60px] lg:leading-[1.05] lg:tracking-[-0.02em]",
             titleSize === "long"
@@ -63,7 +65,7 @@ export default function PageIntro({
         >
           {title}
         </h1>
-        <p className="max-w-[720px] text-[17px] leading-[1.55] text-ink-700 lg:text-xl lg:leading-[1.6]">
+        <p data-slot="page-intro-lead" className="max-w-[720px] text-[17px] leading-[1.55] text-ink-700 lg:text-xl lg:leading-[1.6]">
           {leadShort ? (
             <>
               <span className="lg:hidden">{leadShort}</span>

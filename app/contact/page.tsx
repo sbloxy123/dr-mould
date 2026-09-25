@@ -27,11 +27,11 @@ export default function ContactPage() {
         crumb="Contact"
       />
 
-      <section className="pb-12 lg:pb-28">
+      <section data-slot="contact-content" className="pb-12 lg:pb-28">
         <Container className="lg:grid lg:grid-cols-[minmax(0,7fr)_minmax(0,5fr)] lg:items-start lg:gap-12">
           <div>
             <QuickContact />
-            <div className="rounded-[20px] border border-sand-200 bg-paper p-[22px] lg:rounded-3xl lg:p-11">
+            <div data-slot="contact-form-card" className="rounded-[20px] border border-sand-200 bg-paper p-[22px] lg:rounded-3xl lg:p-11">
               <h2 className="mb-4 font-display text-2xl font-medium text-forest-900 lg:mb-[26px] lg:text-[28px]">
                 {formTitle}
               </h2>
@@ -39,7 +39,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-10 pt-10 lg:gap-6 lg:pt-0">
+          <div data-slot="contact-sidebar" className="flex flex-col gap-10 pt-10 lg:gap-6 lg:pt-0">
             <TalkCard />
             <NextSteps />
             <AreasCard />

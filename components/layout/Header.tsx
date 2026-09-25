@@ -42,9 +42,10 @@ export default function Header() {
   const close = () => setOpen(false);
 
   return (
-    <header className="relative z-40 border-b border-sand-200 bg-paper">
+    <header data-slot="header" className="relative z-40 border-b border-sand-200 bg-paper">
       <Container className="flex h-16 items-center justify-between lg:h-[88px]">
         <Link
+          data-slot="header-logo"
           href="/"
           className="flex items-center gap-2.5 text-forest-700 lg:gap-3"
           aria-label={`${site.name}, home`}
@@ -68,7 +69,7 @@ export default function Header() {
           </span>
         </Link>
 
-        <nav aria-label="Main" className="hidden lg:block">
+        <nav data-slot="header-nav" aria-label="Main" className="hidden lg:block">
           <ul className="flex items-center gap-6 xl:gap-9">
             {navLinks.map((link) => {
               const current = isCurrent(link.href, pathname);
@@ -92,7 +93,7 @@ export default function Header() {
           </ul>
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div data-slot="header-actions" className="hidden items-center gap-3 lg:flex">
           <a
             href={site.phoneHref}
             className="hidden items-center gap-2 px-4 py-3 text-[17px] font-semibold text-forest-700 transition-colors hover:text-leaf-600 xl:flex"
@@ -104,6 +105,7 @@ export default function Header() {
         </div>
 
         <button
+          data-slot="header-menu-toggle"
           ref={toggleRef}
           type="button"
           onClick={() => setOpen((value) => !value)}
@@ -123,6 +125,7 @@ export default function Header() {
       {/* Mobile menu: drops down under the header. `invisible` when closed so
           its links drop out of the tab order. */}
       <div
+        data-slot="mobile-menu"
         id="mobile-menu"
         className={cn(
           "absolute inset-x-0 top-full border-b border-sand-200 bg-paper shadow-soft transition duration-200 ease-out lg:hidden",

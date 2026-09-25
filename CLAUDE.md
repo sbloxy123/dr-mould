@@ -41,11 +41,11 @@ Next.js 13.4 App Router site for Dr Mould, a mould removal business based in Har
 - Shared at the top level: `PageIntro` (breadcrumb, H1, lead), `CtaBand`, `FaqSection` and `FaqList` (native `<details>`), `ProofBar`, `BeforeAfterPair` (static pair), `ImageSlider` (the draggable, keyboard-accessible before/after slider), `Form` (the quote form), `CookieBanner`, `GoogleAnalytics`, `Email`.
 
 **Content:** page copy lives in typed data files, not in components. Where the mobile design uses shorter wording, it's stored alongside in a `...Short` field and swapped with `lg:hidden` / `hidden lg:inline`.
-- `data/site.ts`: phone, email, hours, areas, base, nav links, and `aboutImage` (set it to a `/public` path to switch the home About section to its two-column photo layout).
-- `data/home.ts`, `data/services.ts`, `data/steps.ts`: home page copy.
+- `data/site.ts`: phone, email, hours, areas, base, nav links.
+- `data/home.ts`, `data/services.ts`, `data/steps.ts`: home page copy. `about.featuredWork` picks the gallery entry shown in the About section's before/after slider.
 - `data/reviews.ts`: customer reviews. The home Reviews section only renders when this list is non-empty.
 - `data/information.ts`: Mould advice page copy, and the shared `faq` list.
-- `data/before-after.ts`: gallery entries (images under `public/before-after-square/`, `category`, optional `town`, alt text). The home hero and Recent work pick entries by slug.
+- `data/before-after.ts`: gallery entries (images under `public/before-after-square/`, `category`, optional `town`, alt text). The home hero, About and Recent work pick entries by slug.
 - `data/gallery.ts`, `data/contact.ts`: Our work and Contact page copy.
 
 **Contact form flow:**
@@ -55,7 +55,9 @@ Next.js 13.4 App Router site for Dr Mould, a mould removal business based in Har
 
 **Dead code to be aware of:** `app/api/cloudinary-signature.ts` is a Pages Router (`NextApiRequest`) handler sitting inside the App Router tree, so it is never routed. It and `utils/cloudinary.ts` are the only consumers of the server-side `CLOUDINARY_*` vars.
 
-**Styling:** Tailwind 3.3 with the design tokens in `tailwind.config.js`: `forest`, `leaf`, `sage`, `linen` (page background), `paper` (cards), `sand` (borders), `ink` (text), `gold`, `amber` (health note), `mist` (text on dark green), `danger`, plus `shadow-hero`, `shadow-handle`, `shadow-callbar`, `shadow-soft` and `max-w-content`. Breakpoints are Tailwind's defaults: `md` for two-column grids, `lg` for the desktop header and layouts. `app/globals.css` sets the base styles, the focus ring, reduced-motion handling and the react-toastify theme. `utils/cn.ts` joins class names.
+**Styling:** Tailwind 3.3 with the design tokens in `tailwind.config.js`: `forest`, `leaf`, `sage`, `linen` (page background), `paper` (cards), `sand` (borders), `ink` (text), `gold`, `amber` (health note), `mist` (text on dark green), `danger`, plus `shadow-hero`, `shadow-handle`, `shadow-callbar`, `shadow-soft` and `max-w-content`. Breakpoints are Tailwind's defaults: `md` for two-column grids, `lg` for the desktop header and layouts. `app/globals.css` sets the base styles, the focus ring, reduced-motion handling and the react-toastify theme. `utils/cn.ts` joins class names (no tailwind-merge, so don't pass a class that conflicts with a component's own).
+
+**Component names (`data-slot`):** every component's root element carries `data-slot="<kebab-case name>"` (e.g. `quote-panel`, `before-after-slider`), and its main parts use the same prefix (`quote-panel-card`, `quote-panel-form`). Target them instead of ids or `> div` selectors: from a parent with an arbitrary variant (`[&_[data-slot=button]]:w-full`), or in CSS with `[data-slot="quote-panel-card"]`. `Container`, `Button` and `Reveal` default to `container`, `button` and `reveal`; pass `data-slot` to rename one when it's a component's root. Give any new component a `data-slot` too.
 
 **Fonts:** Fraunces (display) and Figtree (body) via `next/font/google` in `app/layout.tsx`, exposed as `--font-display` / `--font-body` and the `font-display` / `font-body` utilities.
 

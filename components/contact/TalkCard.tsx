@@ -8,7 +8,7 @@ const iconCircle =
 // Desktop only: the green "Prefer to talk?" card at the top of the sidebar.
 export default function TalkCard() {
   return (
-    <section className="hidden flex-col gap-[22px] rounded-3xl bg-forest-700 p-9 text-linen lg:flex">
+    <section data-slot="talk-card" className="hidden flex-col gap-[22px] rounded-3xl bg-forest-700 p-9 text-linen lg:flex">
       <h2 className="font-display text-[28px] font-medium text-paper">
         {talkCard.title}
       </h2>

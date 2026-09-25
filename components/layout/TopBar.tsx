@@ -5,7 +5,7 @@ import { site } from "@/data/site";
 // Desktop-only strip above the header.
 export default function TopBar() {
   return (
-    <div className="hidden bg-forest-900 py-2.5 text-sm text-[#E9E3D3] lg:block">
+    <div data-slot="top-bar" className="hidden bg-forest-900 py-2.5 text-sm text-[#E9E3D3] lg:block">
       <Container className="flex items-center justify-between">
         <div className="flex items-center gap-7">
           <span className="flex items-center gap-2">

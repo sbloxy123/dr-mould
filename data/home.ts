@@ -26,7 +26,8 @@ export const about = {
     "Dr Mould started in 2024 to do one job properly: mould removal and cleaning. Whether it’s a patch on a bathroom ceiling or a whole wall, we work to a high standard, and our aim on every job is to leave the area looking like new.",
     "We know how stubborn mould can be once it’s had time to grow beneath the surface. We use specialist equipment, full PPE and proven techniques, and always explain what’s causing the problem.",
   ],
-  imageAlt: "The Dr Mould team at work",
+  // Slug from data/before-after.ts, shown in the before/after slider.
+  featuredWork: "brick-feature-wall-3",
 };
 
 export const recentWork = {

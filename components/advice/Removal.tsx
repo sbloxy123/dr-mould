@@ -8,7 +8,7 @@ export default function Removal() {
   const { healthNote } = mouldRemoval;
   return (
     // Old links point at #mould-removal-section, so keep that id here.
-    <div id="mould-removal-section">
+    <div data-slot="removal" id="mould-removal-section">
       <Reveal>
         <article id="removal" className="flex flex-col gap-4 lg:gap-[22px]">
           <SectionHeading
@@ -26,7 +26,7 @@ export default function Removal() {
             </p>
           ))}
 
-          <aside className="flex gap-3.5 rounded-[14px] bg-amber-50 p-[18px] lg:gap-[18px] lg:rounded-2xl lg:px-7 lg:py-6">
+          <aside data-slot="removal-health-note" className="flex gap-3.5 rounded-[14px] bg-amber-50 p-[18px] lg:gap-[18px] lg:rounded-2xl lg:px-7 lg:py-6">
             <CircleAlert
               strokeWidth={2}
               aria-hidden

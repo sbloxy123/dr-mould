@@ -13,9 +13,9 @@ export default function Reviews() {
   const meta = [featured.name, featured.town, featured.job].filter(Boolean);
 
   return (
-    <section className="py-14 lg:py-28">
+    <section data-slot="reviews" className="py-14 lg:py-28">
       <Container className="grid gap-5 lg:grid-cols-[minmax(0,4fr)_minmax(0,7fr)] lg:items-center lg:gap-[72px]">
-        <Reveal className="flex flex-col lg:gap-4">
+        <Reveal data-slot="reviews-header" className="flex flex-col lg:gap-4">
           <SectionHeading
             eyebrow={reviewsIntro.eyebrow}
             title={reviewsIntro.title}
@@ -25,7 +25,7 @@ export default function Reviews() {
           </p>
         </Reveal>
         <Reveal>
-          <figure className="flex flex-col gap-4 rounded-[20px] border border-sand-200 bg-paper px-6 py-7 lg:gap-[22px] lg:rounded-3xl lg:px-14 lg:py-12">
+          <figure data-slot="review-card" className="flex flex-col gap-4 rounded-[20px] border border-sand-200 bg-paper px-6 py-7 lg:gap-[22px] lg:rounded-3xl lg:px-14 lg:py-12">
             <svg
               width="44"
               height="34"

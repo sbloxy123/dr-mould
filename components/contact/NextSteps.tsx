@@ -3,7 +3,7 @@ import { nextSteps } from "@/data/contact";
 // Plain section on mobile, a paper card on desktop.
 export default function NextSteps() {
   return (
-    <section className="flex flex-col gap-4 lg:gap-5 lg:rounded-3xl lg:border lg:border-sand-200 lg:bg-paper lg:p-9">
+    <section data-slot="next-steps" className="flex flex-col gap-4 lg:gap-5 lg:rounded-3xl lg:border lg:border-sand-200 lg:bg-paper lg:p-9">
       <h2 className="font-display text-[26px] font-medium text-forest-900">
         {nextSteps.title}
       </h2>

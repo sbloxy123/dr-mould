@@ -9,11 +9,15 @@ import { reduceMould } from "@/data/information";
 export default function Tips() {
   return (
     <section
+      data-slot="tips"
       id="tips"
       className="border-y border-sand-200 bg-paper py-12 lg:py-[104px]"
     >
       <Container className="flex flex-col gap-4 lg:gap-12">
-        <Reveal className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
+        <Reveal
+          data-slot="tips-header"
+          className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between lg:gap-10"
+        >
           <SectionHeading
             eyebrow={reduceMould.eyebrow}
             title={reduceMould.title}
@@ -27,10 +31,11 @@ export default function Tips() {
         </Reveal>
 
         <Reveal>
-          <ul className="grid gap-4 md:grid-cols-2 md:gap-x-8 lg:grid-cols-5 lg:gap-5">
+          <ul data-slot="tips-list" className="grid gap-4 md:grid-cols-2 md:gap-x-8 lg:grid-cols-5 lg:gap-5">
             {reduceMould.items.map((tip) => (
               <li
                 key={tip.title}
+                data-slot="tip"
                 className="flex items-center gap-3.5 lg:flex-col lg:items-stretch lg:gap-3"
               >
                 <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl lg:h-[150px] lg:w-full lg:rounded-[14px]">

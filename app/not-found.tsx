@@ -4,7 +4,7 @@ import { Eyebrow } from "@/components/ui/SectionHeading";
 
 export default function NotFound() {
   return (
-    <section className="py-20 lg:py-32">
+    <section data-slot="not-found" className="py-20 lg:py-32">
       <Container className="flex max-w-[760px] flex-col items-start gap-5 lg:gap-6">
         <Eyebrow>404</Eyebrow>
         <h1 className="font-display text-[40px] font-medium leading-[1.05] tracking-[-0.015em] text-forest-900 lg:text-[60px] lg:tracking-[-0.02em]">

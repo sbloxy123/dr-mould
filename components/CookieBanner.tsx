@@ -32,6 +32,7 @@ export default function CookieBanner() {
   }, [cookieConsent]);
   return (
     <div
+      data-slot="cookie-banner"
       role="region"
       aria-label="Cookie consent"
       className={`${
@@ -40,7 +41,7 @@ export default function CookieBanner() {
     >
       <p>We use cookies to understand how people use our site.</p>
 
-      <div className="flex shrink-0 items-center gap-2">
+      <div data-slot="cookie-banner-actions" className="flex shrink-0 items-center gap-2">
         <Button
           variant="text"
           size="sm"

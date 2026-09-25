@@ -18,9 +18,9 @@ export default function FaqSection({
   headingSize = "default",
 }: FaqSectionProps) {
   return (
-    <section id="faq" className="py-14 lg:py-28">
+    <section data-slot="faq-section" id="faq" className="py-14 lg:py-28">
       <Container className="grid gap-[18px] lg:grid-cols-3 lg:gap-16">
-        <Reveal className="flex flex-col lg:gap-4">
+        <Reveal data-slot="faq-section-header" className="flex flex-col lg:gap-4">
           <SectionHeading
             eyebrow={faqIntro.eyebrow}
             title={faqIntro.title}

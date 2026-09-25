@@ -14,6 +14,7 @@ export function Eyebrow({
 }) {
   return (
     <span
+      data-slot="eyebrow"
       className={cn(
         "block text-[13px] font-semibold uppercase tracking-[0.1em] lg:text-sm",
         tone === "dark" ? "text-gold-400" : "text-leaf-700",
@@ -60,6 +61,7 @@ export default function SectionHeading({
   const dark = tone === "dark";
   return (
     <div
+      data-slot="section-heading"
       className={cn(
         "flex flex-col gap-3 lg:gap-4",
         align === "center" && "items-center text-center",
@@ -68,6 +70,7 @@ export default function SectionHeading({
     >
       {eyebrow && <Eyebrow tone={tone}>{eyebrow}</Eyebrow>}
       <Heading
+        data-slot="section-heading-title"
         id={id}
         className={cn(
           "font-display font-medium leading-[1.12] lg:leading-[1.1]",
@@ -79,6 +82,7 @@ export default function SectionHeading({
       </Heading>
       {intro && (
         <p
+          data-slot="section-heading-intro"
           className={cn(
             "text-[17px] leading-[1.6] lg:text-lg lg:leading-[1.7]",
             align === "center" && "max-w-[640px]",

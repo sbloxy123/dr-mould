@@ -5,7 +5,7 @@ import { steps, stepsIntro } from "@/data/steps";
 
 export default function HowItWorks() {
   return (
-    <section className="py-14 lg:py-28">
+    <section data-slot="how-it-works" className="py-14 lg:py-28">
       <Container className="flex flex-col gap-6 lg:gap-14">
         <Reveal>
           <SectionHeading
@@ -14,10 +14,11 @@ export default function HowItWorks() {
             className="lg:items-center lg:text-center"
           />
         </Reveal>
-        <ol className="flex flex-col gap-5 lg:grid lg:grid-cols-4 lg:gap-6">
+        <ol data-slot="how-it-works-steps" className="flex flex-col gap-5 lg:grid lg:grid-cols-4 lg:gap-6">
           {steps.map((step, index) => (
             <li key={step.title}>
               <Reveal
+                data-slot="how-it-works-step"
                 delay={index * 0.08}
                 className="flex gap-4 border-t-2 border-forest-700 pt-4 lg:flex-col lg:gap-3 lg:pt-6"
               >

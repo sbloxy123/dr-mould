@@ -148,15 +148,16 @@ const ContactForm = ({ variant = "full" }: QuoteFormProps) => {
             Boolean(errors[name] && touched[name]);
 
           return (
-            <Form noValidate>
+            <Form data-slot="quote-form" noValidate>
               <div
+                data-slot="quote-form-fields"
                 className={cn(
                   "grid grid-cols-1 md:grid-cols-2",
                   compact ? "gap-3.5 lg:gap-[18px]" : "gap-4 lg:gap-x-5 lg:gap-y-[22px]",
                   isLoading && "pointer-events-none opacity-60"
                 )}
               >
-                <label htmlFor={fieldId("name")} className={labelClass}>
+                <label data-slot="quote-form-field" htmlFor={fieldId("name")} className={labelClass}>
                   Your name
                   <Field
                     type="text"
@@ -169,7 +170,7 @@ const ContactForm = ({ variant = "full" }: QuoteFormProps) => {
                   <ErrorMessage name="name" component="span" className={errorClass} />
                 </label>
 
-                <label htmlFor={fieldId("phone")} className={labelClass}>
+                <label data-slot="quote-form-field" htmlFor={fieldId("phone")} className={labelClass}>
                   Phone number
                   <Field
                     type="tel"
@@ -182,7 +183,7 @@ const ContactForm = ({ variant = "full" }: QuoteFormProps) => {
                   <ErrorMessage name="phone" component="span" className={errorClass} />
                 </label>
 
-                <label htmlFor={fieldId("email")} className={labelClass}>
+                <label data-slot="quote-form-field" htmlFor={fieldId("email")} className={labelClass}>
                   Email
                   <Field
                     type="email"
@@ -195,7 +196,7 @@ const ContactForm = ({ variant = "full" }: QuoteFormProps) => {
                   <ErrorMessage name="email" component="span" className={errorClass} />
                 </label>
 
-                <label htmlFor={fieldId("address")} className={labelClass}>
+                <label data-slot="quote-form-field" htmlFor={fieldId("address")} className={labelClass}>
                   Town or postcode
                   <Field
                     type="text"
@@ -209,6 +210,7 @@ const ContactForm = ({ variant = "full" }: QuoteFormProps) => {
                 </label>
 
                 <label
+                  data-slot="quote-form-field"
                   htmlFor={fieldId("message")}
                   className={cn(labelClass, "md:col-span-2")}
                 >
@@ -235,7 +237,7 @@ const ContactForm = ({ variant = "full" }: QuoteFormProps) => {
                 </label>
 
                 {/* Photos */}
-                <div className="flex flex-col gap-2 md:col-span-2 lg:gap-2.5">
+                <div data-slot="quote-form-photos" className="flex flex-col gap-2 md:col-span-2 lg:gap-2.5">
                   {!compact && (
                     <span className="text-[15px] font-semibold text-ink-900">
                       Photos{" "}
@@ -344,6 +346,7 @@ const ContactForm = ({ variant = "full" }: QuoteFormProps) => {
 
                 {/* Submit */}
                 <button
+                  data-slot="quote-form-submit"
                   type="submit"
                   disabled={isLoading || isUploading}
                   className={cn(
@@ -358,6 +361,7 @@ const ContactForm = ({ variant = "full" }: QuoteFormProps) => {
                 </button>
 
                 <p
+                  data-slot="quote-form-note"
                   className={cn(
                     "text-center text-[13px] leading-[1.5] text-ink-500 md:col-span-2",
                     !compact && "lg:text-sm lg:leading-[1.55]"

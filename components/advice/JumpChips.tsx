@@ -3,7 +3,7 @@ import { adviceSections } from "@/data/information";
 // Mobile replacement for the desktop "On this page" aside.
 export default function JumpChips() {
   return (
-    <nav aria-label="On this page" className="pt-4 lg:hidden">
+    <nav data-slot="jump-chips" aria-label="On this page" className="pt-4 lg:hidden">
       <ul className="flex flex-wrap gap-2">
         {adviceSections.map((section) => (
           <li key={section.id}>
