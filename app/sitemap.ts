@@ -1,21 +1,22 @@
 import { MetadataRoute } from "next";
+import { site } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: "https://dr-mould.co.uk",
+      url: `${site.url}/`,
       lastModified: new Date(),
     },
     {
-      url: "https://dr-mould.co.uk/information",
+      url: `${site.url}/information`,
       lastModified: new Date(),
     },
     {
-      url: "https://dr-mould.co.uk/gallery",
+      url: `${site.url}/gallery`,
       lastModified: new Date(),
     },
     {
-      url: "https://dr-mould.co.uk/contact",
+      url: `${site.url}/contact`,
       lastModified: new Date(),
     },
   ];

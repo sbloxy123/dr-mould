@@ -54,11 +54,11 @@ export const metadata: Metadata = {
 const jsonLd: WithContext<LocalBusiness> = {
   "@context": "https://schema.org",
   "@type": "HomeAndConstructionBusiness",
-  "@id": "https://dr-mould.co.uk/",
+  "@id": `${site.url}/`,
   name: "Dr Mould - Local Mould Treatment and Cleaning Service",
   description: "Professional mold removal, treatment and cleaning services.",
-  url: "https://dr-mould.co.uk/",
-  logo: "https://www.dr-mould.co.uk/logo.png",
+  url: `${site.url}/`,
+  logo: `${site.url}/logo.png`,
   address: {
     "@type": "PostalAddress",
     streetAddress: "Hare Street",
