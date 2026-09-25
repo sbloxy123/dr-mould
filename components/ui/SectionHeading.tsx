@@ -16,7 +16,7 @@ export function Eyebrow({
     <span
       className={cn(
         "block text-[13px] font-semibold uppercase tracking-[0.1em] lg:text-sm",
-        tone === "dark" ? "text-gold-400" : "text-leaf-600",
+        tone === "dark" ? "text-gold-400" : "text-leaf-700",
         className
       )}
     >

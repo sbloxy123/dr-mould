@@ -14,7 +14,8 @@ module.exports = {
           700: "#1E4A38", // primary buttons, quote panel, icon tiles, links
         },
         leaf: {
-          600: "#2E8357", // eyebrows, active nav, link hover, check icons
+          700: "#2B7B52", // eyebrow text (4.5:1 on linen; 600 is only 4.2:1)
+          600: "#2E8357", // active nav, link hover, check icons, focus ring
         },
         logo: "#347D2E",
         sage: {

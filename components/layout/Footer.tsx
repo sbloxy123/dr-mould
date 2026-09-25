@@ -73,7 +73,7 @@ export default function Footer() {
               href={site.designCredit.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-paper hover:underline"
+              className="text-paper underline underline-offset-2 hover:text-gold-400"
             >
               {site.designCredit.label}
             </a>
