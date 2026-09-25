@@ -2,92 +2,159 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import type { ChangeEvent, MouseEvent, TouchEvent } from "react";
+import { ChevronsLeftRight } from "lucide-react";
+import { cn } from "@/utils/cn";
 
-export const Slider = ({
-  before,
-  after,
-}: {
+type BeforeAfterSliderProps = {
+  // Used in the range input's label: "Compare before and after: {title}".
+  title: string;
   before: string;
   after: string;
-}) => {
+  beforeAlt: string;
+  afterAlt: string;
+  // Passed to next/image so it picks a sensible source size.
+  sizes: string;
+  priority?: boolean;
+  className?: string;
+};
+
+const tagBase =
+  "pointer-events-none absolute top-3 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase leading-none tracking-[0.06em] lg:top-3.5 lg:px-[11px] lg:py-[5px] lg:text-xs";
+
+function clampPercent(clientX: number, rect: DOMRect) {
+  const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
+  return Math.max(0, Math.min((x / rect.width) * 100, 100));
+}
+
+// A square before/after comparison. Drag the handle (mouse or touch), or
+// focus the slider and use the arrow keys: a visually hidden range input
+// drives the same position.
+export default function BeforeAfterSlider({
+  title,
+  before,
+  after,
+  beforeAlt,
+  afterAlt,
+  sizes,
+  priority = false,
+  className,
+}: BeforeAfterSliderProps) {
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isDragging, setIsDragging] = useState(false);
 
-  const handleMove = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    if (!isDragging) return;
-
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = Math.max(0, Math.min(event.clientX - rect.left, rect.width));
-    const percent = Math.max(0, Math.min((x / rect.width) * 100, 100));
-
-    setSliderPosition(percent);
-  };
-  const handleTouchMove = (event: React.TouchEvent<HTMLDivElement>) => {
-    if (!isDragging) return;
-
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = Math.max(
-      0,
-      Math.min(event.touches[0].clientX - rect.left, rect.width)
-    );
-    const percent = Math.max(0, Math.min((x / rect.width) * 100, 100));
-    setSliderPosition(percent);
-  };
-
-  const handleMouseDown = () => {
+  const handleMouseDown = (event: MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
     setIsDragging(true);
+    setSliderPosition(
+      clampPercent(event.clientX, event.currentTarget.getBoundingClientRect())
+    );
   };
 
-  const handleMouseUp = () => {
-    setIsDragging(false);
+  const handleMove = (event: MouseEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    setSliderPosition(
+      clampPercent(event.clientX, event.currentTarget.getBoundingClientRect())
+    );
+  };
+
+  const handleTouchStart = (event: TouchEvent<HTMLDivElement>) => {
+    setIsDragging(true);
+    setSliderPosition(
+      clampPercent(
+        event.touches[0].clientX,
+        event.currentTarget.getBoundingClientRect()
+      )
+    );
+  };
+
+  const handleTouchMove = (event: TouchEvent<HTMLDivElement>) => {
+    if (!isDragging) return;
+    setSliderPosition(
+      clampPercent(
+        event.touches[0].clientX,
+        event.currentTarget.getBoundingClientRect()
+      )
+    );
+  };
+
+  const stopDragging = () => setIsDragging(false);
+
+  const handleRangeChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setSliderPosition(Number(event.target.value));
   };
 
   return (
     <div
-      className="w-full relative"
-      onMouseUp={handleMouseUp}
-      onTouchEnd={handleMouseUp}
+      className={cn(
+        "relative aspect-square w-full cursor-ew-resize touch-pan-y select-none overflow-hidden rounded-2xl bg-sand-200 focus-within:outline focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-leaf-600 lg:rounded-[18px]",
+        className
+      )}
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMove}
+      onMouseUp={stopDragging}
+      onMouseLeave={stopDragging}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={stopDragging}
+      onTouchCancel={stopDragging}
     >
+      <Image
+        src={after}
+        alt={afterAlt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        draggable={false}
+        className="object-cover"
+      />
+
       <div
-        className="relative object-cover w-full max-w-[500px] aspect-[50/50] overflow-hidden select-none"
-        onMouseMove={handleMove}
-        onTouchMove={handleTouchMove}
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleMouseDown}
+        className="absolute inset-0"
+        style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
       >
         <Image
-          alt="picture of wall after treatment"
+          src={before}
+          alt={beforeAlt}
           fill
-          sizes="auto"
-          priority
-          src={after}
+          sizes={sizes}
+          priority={priority}
+          draggable={false}
+          className="object-cover"
         />
-
-        <div
-          className="absolute object-cover top-0 left-0 right-0 w-full max-w-[500px] aspect-[50/50] overflow-hidden select-none"
-          style={{ clipPath: `inset(0 ${100 - sliderPosition}% 0 0)` }}
-        >
-          <Image
-            fill
-            priority
-            alt="picture of wall before treatment"
-            sizes="auto"
-            src={before}
-          />
-        </div>
-        <div
-          className="absolute top-0 bottom-0 w-1 bg-theme_indigo-900 cursor-ew-resize"
-          style={{
-            left: `calc(${sliderPosition}% - 1px)`,
-          }}
-        >
-          <div className="bg-theme_indigo-900 absolute rounded-full h-fit w-32 text-center  top-[calc(10%-5px)]">
-            <p className=" uppercase bg-theme_indigo-900 w-full text-white rounded-r-full">
-              Slide me
-            </p>
-          </div>
-        </div>
       </div>
+
+      {/* Divider line and handle. Purely visual: the range input is the control. */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-y-0 w-[3px] -translate-x-1/2 bg-paper"
+        style={{ left: `${sliderPosition}%` }}
+      >
+        <span className="absolute left-1/2 top-1/2 flex h-11 w-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-paper text-forest-700 shadow-handle">
+          <ChevronsLeftRight size={22} strokeWidth={2.2} aria-hidden />
+        </span>
+      </div>
+
+      <span className={cn(tagBase, "left-3 bg-forest-900/90 text-paper lg:left-3.5")}>
+        Before
+      </span>
+      <span className={cn(tagBase, "right-3 bg-gold-400 text-forest-900 lg:right-3.5")}>
+        After
+      </span>
+
+      <input
+        type="range"
+        min={0}
+        max={100}
+        step={1}
+        value={Math.round(sliderPosition)}
+        onChange={handleRangeChange}
+        aria-label={`Compare before and after: ${title}`}
+        aria-valuetext={`${Math.round(sliderPosition)}% before, ${
+          100 - Math.round(sliderPosition)
+        }% after`}
+        className="sr-only"
+      />
     </div>
   );
-};
+}
