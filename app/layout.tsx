@@ -119,9 +119,17 @@ export default function RootLayout({
       <body
         className={`${fraunces.variable} ${figtree.variable}`}
       >
-        {/* Keep analytics before CookieBanner: gtag must exist before the
-            banner applies the stored consent. */}
-        <GoogleAnalytics GA_MEASUREMENT_ID="G-KSTFZWW3Y6" />
+        {/* First in <body> so the consent default is queued before anything
+            else. Only production builds load gtag.js; Previews and `next dev`
+            don't send hits. If Vercel's VERCEL_ENV is missing, production
+            still tracks. */}
+        <GoogleAnalytics
+          GA_MEASUREMENT_ID="G-KSTFZWW3Y6"
+          loadGtag={
+            process.env.NODE_ENV === "production" &&
+            process.env.VERCEL_ENV !== "preview"
+          }
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

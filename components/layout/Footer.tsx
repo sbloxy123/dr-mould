@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
 import Container from "@/components/ui/Container";
 import { site } from "@/data/site";
 
@@ -64,8 +65,11 @@ export default function Footer() {
         </div>
 
         <div data-slot="footer-legal" className="flex flex-col gap-1.5 border-t border-mist-200/20 pt-[18px] text-[13px] text-mist-300 lg:flex-row lg:justify-between lg:pt-6 lg:text-sm">
-          <span>
-            © {new Date().getFullYear()} {site.name}. All rights reserved.
+          <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <span>
+              © {new Date().getFullYear()} {site.name}. All rights reserved.
+            </span>
+            <CookieSettingsButton className="min-h-[24px] text-paper underline underline-offset-2 hover:text-gold-400" />
           </span>
           <span>
             Design &amp; build by{" "}
