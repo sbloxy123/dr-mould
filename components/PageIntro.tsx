@@ -12,6 +12,8 @@ type PageIntroProps = {
   // `band`: paper background with a bottom border (Mould advice, Our work).
   // `plain`: sits on the linen page background (Contact).
   variant?: "band" | "plain";
+  // "long" drops the mobile H1 to 36px for longer titles (Contact).
+  titleSize?: "default" | "long";
   className?: string;
 };
 
@@ -22,13 +24,15 @@ export default function PageIntro({
   leadShort,
   crumb,
   variant = "band",
+  titleSize = "default",
   className,
 }: PageIntroProps) {
   return (
     <section
       className={cn(
-        variant === "band" &&
-          "border-b border-sand-200 bg-paper pb-8 pt-7 lg:pb-[72px] lg:pt-16",
+        variant === "band"
+          ? "border-b border-sand-200 bg-paper pb-8 pt-7 lg:pb-[72px] lg:pt-16"
+          : "pb-6 pt-7 lg:pb-12 lg:pt-16",
         className
       )}
     >
@@ -49,7 +53,14 @@ export default function PageIntro({
             </li>
           </ol>
         </nav>
-        <h1 className="font-display text-[40px] font-medium leading-[1.05] tracking-[-0.015em] text-forest-900 lg:text-[60px] lg:tracking-[-0.02em]">
+        <h1
+          className={cn(
+            "font-display font-medium tracking-[-0.015em] text-forest-900 lg:text-[60px] lg:leading-[1.05] lg:tracking-[-0.02em]",
+            titleSize === "long"
+              ? "text-[36px] leading-[1.08]"
+              : "text-[40px] leading-[1.05]"
+          )}
+        >
           {title}
         </h1>
         <p className="max-w-[720px] text-[17px] leading-[1.55] text-ink-700 lg:text-xl lg:leading-[1.6]">

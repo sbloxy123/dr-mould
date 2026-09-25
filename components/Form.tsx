@@ -364,8 +364,14 @@ const ContactForm = ({ variant = "full" }: QuoteFormProps) => {
                   )}
                 >
                   We&rsquo;ll only use your details to reply to your enquiry.
-                  {!compact &&
-                    " Your data is handled in line with UK data protection law."}
+                  {/* The full variant adds this on desktop; the mobile design
+                      keeps the line short. */}
+                  {!compact && (
+                    <span className="hidden lg:inline">
+                      {" "}
+                      Your data is handled in line with UK data protection law.
+                    </span>
+                  )}
                 </p>
               </div>
             </Form>
