@@ -1,0 +1,148 @@
+<!doctype html>
+<!--
+  Source for public/og-image.png, the 1200 x 630 social sharing image.
+  To regenerate it from the repo root:
+
+  "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new \
+    --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 \
+    --virtual-time-budget=8000 --allow-file-access-from-files \
+    --screenshot="$PWD/public/og-image.png" "file://$PWD/redesign/og-image.html"
+
+  Then give the PNG a new name and update `ogImage.url` in utils/metadata.ts,
+  so Facebook and LinkedIn fetch the new one instead of their cached copy.
+-->
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<title>Dr Mould OG image</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Figtree:wght@400;600;700&display=block" rel="stylesheet">
+<style>
+  :root {
+    --forest-900: #16372A;
+    --forest-700: #1E4A38;
+    --paper: #FFFDF8;
+    --mist-200: #D5E0D8;
+    --mist-300: #A9BDB0;
+    --gold-400: #E3B55B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    display: flex;
+    background: var(--forest-900);
+    font-family: "Figtree", sans-serif;
+    color: var(--paper);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .text {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 56px 0 56px 72px;
+  }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .brand-mark {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--paper);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .brand-mark img { width: 52px; height: 52px; }
+  .brand-name { font-family: "Fraunces", serif; font-weight: 600; font-size: 34px; }
+
+  h1 {
+    font-family: "Fraunces", serif;
+    font-weight: 500;
+    font-size: 62px;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    max-width: 560px;
+  }
+  h1 span { display: block; color: var(--gold-400); }
+  .lead {
+    margin-top: 22px;
+    max-width: 520px;
+    font-size: 25px;
+    line-height: 1.45;
+    color: var(--mist-200);
+  }
+
+  .contact { display: flex; align-items: center; gap: 22px; font-size: 24px; }
+  .phone {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: var(--paper);
+    color: var(--forest-700);
+    font-weight: 700;
+  }
+  .site { color: var(--mist-300); font-weight: 600; }
+
+  .photos {
+    width: 500px;
+    padding: 40px 40px 40px 0;
+    display: flex;
+  }
+  .card {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 28px;
+    background: var(--paper);
+    box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.45);
+  }
+  .shot { position: relative; overflow: hidden; }
+  .shot img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; }
+  .shot.before { border-radius: 18px 4px 4px 18px; }
+  .shot.after { border-radius: 4px 18px 18px 4px; }
+  .tag {
+    position: absolute; left: 14px; top: 14px;
+    padding: 7px 13px;
+    border-radius: 999px;
+    font-size: 15px; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; line-height: 1;
+  }
+  .before .tag { background: rgba(22, 55, 42, 0.9); color: var(--paper); }
+  .after .tag { background: var(--gold-400); color: var(--forest-900); }
+</style>
+</head>
+<body>
+  <div class="text">
+    <div class="brand">
+      <span class="brand-mark"><img src="../public/logo.svg" alt=""></span>
+      <span class="brand-name">Dr Mould</span>
+    </div>
+
+    <div>
+      <h1><span>Mould gone.</span>Your home back to how it should be.</h1>
+      <p class="lead">Mould removal &amp; treatment across Hertfordshire, Essex and Cambridgeshire.</p>
+    </div>
+
+    <div class="contact">
+      <span class="phone">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        07364 233567
+      </span>
+      <span class="site">dr-mould.co.uk</span>
+    </div>
+  </div>
+
+  <div class="photos">
+    <div class="card">
+      <div class="shot before">
+        <img src="../public/before-after-square/wardrobe-before.jpg" alt="">
+        <span class="tag">Before</span>
+      </div>
+      <div class="shot after">
+        <img src="../public/before-after-square/wardrobe-after.jpg" alt="">
+        <span class="tag">After</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

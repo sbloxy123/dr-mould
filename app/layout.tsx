@@ -11,6 +11,7 @@ import Footer from "@/components/layout/Footer";
 import MobileCallBar from "@/components/layout/MobileCallBar";
 import CookieBanner from "@/components/CookieBanner";
 import { site } from "@/data/site";
+import { ogImage } from "@/utils/metadata";
 
 // Redesign fonts: Fraunces for display, Figtree for body and UI.
 const fraunces = Fraunces({
@@ -36,7 +37,12 @@ export const metadata: Metadata = {
     siteName: site.name,
     locale: "en_GB",
     type: "website",
-    images: "/opengraph-image.png",
+    images: [ogImage],
+  },
+  // Pages don't set `twitter`, so they inherit this card type. Next fills the
+  // title, description and image in from each page's Open Graph tags.
+  twitter: {
+    card: "summary_large_image",
   },
   // viewport-fit=cover lets the mobile call bar pad for the iPhone home bar.
   viewport: {
@@ -67,7 +73,7 @@ const jsonLd: WithContext<LocalBusiness> = {
     telephone: site.phoneIntl,
     email: site.email,
   },
-  image: ["https://www.dr-mould.co.uk/opengraph-image.png?ad00cb6df7787160"],
+  image: [`${site.url}${ogImage.url}`],
   geo: {
     "@type": "GeoCoordinates",
     latitude: 51.94868891616687,
